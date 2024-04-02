@@ -19,10 +19,4 @@ services:
         # RELEASED_VERSION erteket ci scriptek betoltik az inditott folyamat szerint
         POM_VERSION: '$RELEASED_VERSION'
         POM_EXTENSION: 'jar'
-        # NEXUS_USER erteket ci scriptek betoltik
-        REPOSITORY_USER: '$NEXUS_USER'
-        # NEXUS_PASSWORD erteket ci scriptek betoltik
-        REPOSITORY_PASSWORD: '$NEXUS_PASSWORD'
-        # mlff projektek mas repot hasznalnak mint a default ceges
-        REPOSITORY_URL: 'https://nexus.icellmobilsoft.hu'
     image: "$DOCKER_SERVICE_TICKER_CORE_QUARTZ_SERVICE:$RELEASED_VERSION"
