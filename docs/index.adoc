@@ -1,0 +1,30 @@
+:toc: left
+:toclevels: 4
+:sectnums:
+:sectnumlevels: 4
+:source-highlighter: rouge
+:rouge-style: thankful_eyes
+:icons: font
+:table-stripes: even
+
+= Ticker Modul Dokumentáció
+
+image:https://img.shields.io/github/actions/workflow/status/i-Cell-Mobilsoft-Open-Source/ticker-backend/compile_maven.yml?branch=main&logo=GitHub&style=plastic[Compile status,link=https://github.com/i-Cell-Mobilsoft-Open-Source/ticker-backend/actions/workflows/compile_maven.yml?query=branch%3Amain]
+image:https://img.shields.io/maven-central/v/hu.icellmobilsoft.ticker/ticker?logo=apache-maven&style=for-the-badge)[Maven central version of Parent pom project]
+image:https://img.shields.io/github/license/i-Cell-Mobilsoft-Open-Source/ticker-backend?style=plastic&logo=apache[License of Parent pom project]
+image:https://img.shields.io/badge/Use_JakartaEE_10+-project-brightgreen.svg?style=plastic&logo=jakartaee[Use JakartaEE project]
+image:https://img.shields.io/github/commit-activity/m/i-Cell-Mobilsoft-Open-Source/ticker-backend.svg?label=Commits&style=plastic&logo=git&logoColor=white[Commits]
+image:https://img.shields.io/badge/JVM-17-brightgreen.svg?style=plastic&logo=openjdk[Supported jvms]
+image:https://img.shields.io/github/stars/i-Cell-Mobilsoft-Open-Source/ticker-backend?style=plastic[GitHub Repo Stars,link=https://github.com/i-Cell-Mobilsoft-Open-Source/ticker-backend/stargazers]
+
+
+include::technology.adoc[leveloffset=+1]
+
+include::project_implementation.adoc[leveloffset=+1]
+
+include::useful.adoc[leveloffset=+1]
+
+include::configs.adoc[leveloffset=+1]
+
+include::release-notes/index.adoc[leveloffset=+1]
+

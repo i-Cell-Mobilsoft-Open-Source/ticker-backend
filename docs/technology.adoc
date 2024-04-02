@@ -1,0 +1,81 @@
+ifndef::imagesdir[:imagesdir: ./images]
+= Általános
+
+A projekt célja, egy moduláris megoldás adása arra, hogy cron időzítéssel adott api végpontok meghívásával folyamatokat indítson el.
+
+[NOTE]
+====
+Dokumentáció: `https://i-cell-mobilsoft-open-source.github.io/ticker/`
+====
+
+== Architektúra
+
+:tm54-architektura: tm54-architektura.png
+image::{tm54-architektura}[Architektúra,link="{imagesdir}/{tm54-architektura}",window=_blank]
+
+== Használt technológiák
+
+* Coffee 2.0.0+ +
+JavaEE solution set, melynek célja, hogy az enterprise világ gyakori algoritmusait összegyűjtse, azokra egy alapvető megoldást nyújtson, melyet, ha szükséges saját igényeinkre szabhatunk (https://github.com/i-Cell-Mobilsoft-Open-Source/coffee) +
+
+* Java 17+ +
+* Maven 3.8.2+
+* Jakarta EE 10 +
+* CDI 4.0 +
+* Microprofile 6.0 +
+* Quarkus 3.2.5.Final +
+
+== Projekt struktúra
+
+* `/.github` - GitHub CI scriptek beállításai
+
+* `/docs` - Dokumentációk tárhelye
+
+* `/etc` - Konfigurációk, fejlesztési környezet scriptek, stb.
+
+** `/etc/config` - Konfigurációk
+
+*** `/etc/config/grafana/**` - Grafana dashboardok, datasource-ok.
+
+*** `/etc/config/META-INF/microprofile-config*.yml` - Microprofile által kezelt configurációs yml fájlok
+
+*** `/etc/config/prometheus/**` - Prometheus konfiguráció localhosthoz
+
+*** `/etc/config/testsuite/META-INF/roaster-<profile>.yml` - Roaster alapú tesztekhez configurációs fájlok
+
+*** `/etc/config/application.properties` - Quarkus alap configurációja
+
+** `/etc/docker-compose` - Docker compose fájlok és hozzájuk tartozó esetleges Dockerfile-ok.
+
+** `/etc/release` - Docker release kezelési seglet a GitHub actionben.
+
+* `/ticker-bom` - Maven dependency definíciók
+
+** `/ticker-bom/ticker-bom-all` - Maven dependency management adó modul
+
+** `/ticker-bom/ticker-bom-project` - Projekt saját maven dependency definíciók
+
+** `/ticker-bom/ticker-bom-quarkus` - Quarkus maven dependency definíciók
+
+* `/ticker-common` - Projekt általános elemeinek al moduljai
+
+** `/ticker-common-api` - Projekt api modulja
+
+** `/ticker-common-dto` - Projekt dto modulja
+
+** `/ticker-common-health` - Projekt health modulja
+
+* `/ticker-core` - Projekt központi megvalósításainak almodulja
+
+** `/ticker-core-quartz` - Projekt központi magja, mely a ticker alapját adja quartz segítségével
+
+* `/ticker-samples` - ticker samples al moduja
+
+** `/ticker-samples-mockapi` - Mock api végpontok microprofile rest clientjei
+
+* `/ticker-services` - ticker service-el al moduja
+
+** `/ticker-core-quartz-service` - Mintaként használt quarkus alapú api ami bemutatja hogyan is lehet használni a ticker-core-quartz-ot saját local mp rest clientekkel.
+
+* `/ticker-testsuite` - ticker sample service-hez tartozó testsuite a teszteléshez.
+

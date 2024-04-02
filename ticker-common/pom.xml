@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>hu.icellmobilsoft.ticker</groupId>
+        <artifactId>ticker</artifactId>
+        <version>1.3.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>ticker-common</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>ticker-common-dto</module>
+        <module>ticker-common-api</module>
+        <module>ticker-common-health</module>
+        <module>ticker-common-system-rest</module>
+        <module>ticker-common-metrics</module>
+        <module>ticker-common-core</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>hu.icellmobilsoft.ticker.bom</groupId>
+                <artifactId>ticker-bom-all</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

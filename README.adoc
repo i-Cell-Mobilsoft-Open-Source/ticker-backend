@@ -1,0 +1,69 @@
+:source-highlighter: rouge
+:rouge-style: thankful_eyes
+:icons: font
+:table-stripes: even
+
+= Ticker Modul
+
+== Általános
+
+image:https://img.shields.io/github/actions/workflow/status/i-Cell-Mobilsoft-Open-Source/ticker-backend/compile_maven.yml?branch=main&logo=GitHub&style=plastic[Compile status,link=https://github.com/i-Cell-Mobilsoft-Open-Source/ticker-backend/actions/workflows/compile_maven.yml?query=branch%3Amain]
+image:https://img.shields.io/maven-central/v/hu.icellmobilsoft.ticker/ticker?logo=apache-maven&style=for-the-badge)[Maven central version of Parent pom project]
+image:https://img.shields.io/github/license/i-Cell-Mobilsoft-Open-Source/ticker-backend?style=plastic&logo=apache[License of Parent pom project]
+image:https://img.shields.io/badge/Use_JakartaEE_10+-project-brightgreen.svg?style=plastic&logo=jakartaee[Use JakartaEE project]
+image:https://img.shields.io/github/commit-activity/m/i-Cell-Mobilsoft-Open-Source/ticker-backend.svg?label=Commits&style=plastic&logo=git&logoColor=white[Commits]
+image:https://img.shields.io/badge/JVM-17-brightgreen.svg?style=plastic&logo=openjdk[Supported jvms]
+image:https://img.shields.io/github/stars/i-Cell-Mobilsoft-Open-Source/ticker-backend?style=plastic[GitHub Repo Stars,link=https://github.com/i-Cell-Mobilsoft-Open-Source/ticker-backend/stargazers]
+
+A projekt célja, egy moduláris megoldás adása arra, hogy cron időzítéssel adott api végpontok meghívásával folyamatokat indítson el.
+
+[NOTE]
+====
+Dokumentáció: `https://i-cell-mobilsoft-open-source.github.io/ticker/`
+====
+
+== Fejlesztés
+
+A fejlesztés során mock service használata javasolt ha rest hívás fejlesztése a cél. Ehhez a docker-compose-ok közül a mock-service-t kell indítani, valamint a maven clean install esetén az `add-mockapi` profil segítségével kell buildelni az alkalamzást, hogy meglegyen a microprofile rest client apival.
+
+== Tesztelés
+
+Tesztelési lehetőségre 2 féle képpen is lehetőség van.
+
+A ticker-testsuite alatt létrehozott al projekt, mely a projektről amennyire lehetséges független, nem dependál a projektre, csakis kizárólag az api részét használja fel.
+
+.Fejlesztői tesztek - ticker-testsuite
+`<PROJECT_PATH>/ticker-testsuite`
+
+A fejlesztői tesztek a https://github.com/i-Cell-Mobilsoft-Open-Source/roaster[Roaster] projektet használják fel.
+Ez egy teljesen önnáló REST külső hívásokat végez el a deployolt alkalmazáson.
+Futtatható egyből a fejlesztői UI (junit plugin) vagy a maven segítségével (aktiválni kell a "profile" kapcsolót),
+például:
+
+[source,bash]
+----
+cd local_path/ticker/ticker-testsuite/ticker-testsuite-sample/ticker-testsuite-sample-service
+mvn verify -Dprofile <1>
+mvn verify -Dprofile=sandbox,local <2>
+----
+<1> default paraméterek
+<2> kiválasztott profilok a konfigurációs fájlokból
+
+
+== Release
+A release elkészítése automata folyamat,
+amit a Github actionök segítségével végezhető el.
+Erre a docker-compose és dockerimage áll rendelkezésre.
+
+./ticker/etc/release/Dockerfile
+Alapvetően 3 részből áll:
+
+. Base image, ami esetünkben egy java 17 image
+. jar fájl lehúzása - nexusból lehúzni a kívánt deployment fájlt
+. dockerimage finalizálása - jar fájlok bele másolása, stb.
+
+./ticker-backend/etc/release/docker-compose.yml
+Funkciója hogy beállítja a service-k változóit és egyszerre kezelje őket.
+
+.Futtatás
+Futtatás kézi indítással történik a https://github.com/i-Cell-Mobilsoft-Open-Source/ticker-backend/actions[GitHub Actions]-el.

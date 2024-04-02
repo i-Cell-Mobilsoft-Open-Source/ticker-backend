@@ -1,0 +1,35 @@
+version: "3.8"
+
+#
+# futtatas:
+# docker compose -f docker-compose.local.mock-server.yml up --build --force-recreate
+#
+# belemaszas:
+# docker exec -it mock-service-local /bin/bash
+#
+services:
+  mock-service-local:
+    container_name: mock-service-local
+    build:
+      context: ../../
+      dockerfile: etc/docker-compose/MockServer.dockerfile
+      args:
+        - OSS_DOCKER_REPOSITORY=${OSS_DOCKER_REPOSITORY}
+        - DOCKER_BASE_IMAGE_VERSION=${DOCKER_BASE_IMAGE_VERSION}
+        - MOCK_SERVER_VERSION_RELEASE=5.15.0
+        - NETTY_TCNATIVE_VERSION=2.0.50.Final
+    ports:
+      - '1080:1080'
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:1080/health" ]
+      interval: 2s
+    deploy:
+      resources:
+        limits:
+          #cpus: '0.01'
+          memory: 256M
+networks:
+  default:
+    external: true
+    # if it could not be found on compose up, then execute: docker network create ticker-local-network
+    name: ticker-local-network

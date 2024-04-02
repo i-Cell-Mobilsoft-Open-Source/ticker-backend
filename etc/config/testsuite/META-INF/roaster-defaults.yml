@@ -1,0 +1,8 @@
+# For docker image test
+ticker:
+    service:
+        ticker:
+            base:
+                uri: http://localhost:8081
+            quarkus:
+                uri: http://localhost:8081/q

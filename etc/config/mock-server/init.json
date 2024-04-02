@@ -1,0 +1,54 @@
+[
+  {
+    "httpRequest": {
+      "path": "/test",
+      "headers": {
+        "Accept": [
+          "application/json"
+        ]
+      }
+    },
+    "httpResponse": {
+      "body": "{\"context\":{\"requestId\":\"4ISJ0CKWQRUB2V01\",\"timestamp\":\"2024-03-25T10:22:00.379Z\"},\"funcCode\":\"OK\"}",
+      "statusCode": 200,
+      "headers": {
+        "Content-Type": [
+          "application/json"
+        ]
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "path": "/test",
+      "headers": {
+        "Accept": [
+          "application/xml"
+        ]
+      }
+    },
+    "httpResponse": {
+      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><BaseResponse xmlns=\"http://common.dto.coffee.icellmobilsoft.hu/commonservice\"><context><requestId>4ISIYSWEBVEPCX01</requestId><timestamp>2024-03-25T10:20:48.212Z</timestamp></context><funcCode>OK</funcCode></BaseResponse>",
+      "statusCode": 200,
+      "headers": {
+        "Content-Type": [
+          "application/xml"
+        ]
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "path": "/test"
+    },
+    "httpResponse": {
+      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><BaseResponse xmlns=\"http://common.dto.coffee.icellmobilsoft.hu/commonservice\"><context><requestId>4ISIYSWEBVEPCX01</requestId><timestamp>2024-03-25T10:20:48.212Z</timestamp></context><funcCode>OK</funcCode></BaseResponse>",
+      "statusCode": 200,
+      "headers": {
+        "Content-Type": [
+          "application/xml"
+        ]
+      }
+    }
+  }
+]
