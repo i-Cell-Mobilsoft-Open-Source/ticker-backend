@@ -19,7 +19,7 @@ A projekt célja, egy moduláris megoldás adása arra, hogy cron időzítéssel
 
 [NOTE]
 ====
-Dokumentáció: `https://i-cell-mobilsoft-open-source.github.io/ticker/`
+Dokumentáció: `https://i-cell-mobilsoft-open-source.github.io/ticker-backend/`
 ====
 
 == Fejlesztés

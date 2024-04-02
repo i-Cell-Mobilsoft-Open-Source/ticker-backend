@@ -27,6 +27,9 @@ jobs:
   docker-build:
     runs-on: ubuntu-latest
 
+    # run only on main
+    if: (github.ref_name == 'main' && contains('["rombow","czenczl","speter555"]', github.actor))
+
     steps:
 
       # https://github.com/actions/checkout
@@ -37,6 +40,7 @@ jobs:
       - id: getVersion
         name: getVersion into POM_XML_PROJECT_VERSION variable
         run: |
+          sudo apt-get install libxml2-utils
           PROJECT_VERSION=`echo -e 'setns x=http://maven.apache.org/POM/4.0.0\ncat /x:project/x:version/text()' | xmllint --shell pom.xml | grep -v /`
           echo "PROJECT_VERSION=${PROJECT_VERSION}" >> $GITHUB_OUTPUT
 
