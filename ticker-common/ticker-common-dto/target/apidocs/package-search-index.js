@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"hu.icellmobilsoft.ticker.common.dto.exception.enums"},{"l":"hu.icellmobilsoft.ticker.common.dto.path"}];updateSearchResults();

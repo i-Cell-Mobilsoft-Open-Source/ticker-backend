@@ -1,1 +1,0 @@
-typeSearchIndex = [{"p":"hu.icellmobilsoft.ticker.common.health","l":"AbstractBaseHealthCheck"},{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"hu.icellmobilsoft.ticker.common.health","l":"IHealth"}];updateSearchResults();

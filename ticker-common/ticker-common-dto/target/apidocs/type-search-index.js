@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"hu.icellmobilsoft.ticker.common.dto.exception.enums","l":"FaultType"},{"p":"hu.icellmobilsoft.ticker.common.dto.path","l":"ServicePath"},{"p":"hu.icellmobilsoft.ticker.common.dto.path","l":"TickerPath"}];updateSearchResults();

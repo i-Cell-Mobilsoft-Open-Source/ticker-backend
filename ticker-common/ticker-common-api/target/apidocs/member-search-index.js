@@ -1,1 +1,0 @@
-memberSearchIndex = [{"p":"hu.icellmobilsoft.ticker.common.api.system","c":"ISystemRest","l":"versionInfo()"}];updateSearchResults();
