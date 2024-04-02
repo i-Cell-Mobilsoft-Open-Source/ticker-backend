@@ -1,0 +1,78 @@
+#-------------------------------
+# Coffee config
+#-------------------------------
+coffee:
+  app:
+    name: ${quarkus.application.name}
+  config:
+    resource:
+      bundles: i18n.common-messages,i18n.messages
+    xml:
+      catalog:
+        path: xsd/hu/icellmobilsoft/ticker/dto/super.catalog.xml
+
+mp:
+  openapi:
+    filter: hu.icellmobilsoft.ticker.common.rest.filter.OpenAPIFilter
+
+#-------------------------------
+# Quarkus settings
+#-------------------------------
+quarkus:
+  arc:
+#    remove-unused-beans: false
+    unremovable-types:
+      # producer: https://github.com/quarkusio/quarkus/blob/3.2.5.Final/extensions/quartz/runtime/src/main/java/io/quarkus/quartz/runtime/QuartzSchedulerImpl.java#L284
+      - org.quartz.Scheduler
+      # producer: hu.icellmobilsoft.ticker.quartz.service.timer.config.TimerConfigImpl
+      - hu.icellmobilsoft.ticker.quartz.service.timer.config.ITimerConfig
+      # @Named annotacio utan elvileg torolheto
+      - hu.icellmobilsoft.coffee.module.mp.restclient.provider.DefaultLoggerClientRequestFilter
+      - hu.icellmobilsoft.coffee.module.mp.restclient.provider.DefaultLoggerClientResponseFilter
+      - hu.icellmobilsoft.coffee.tool.utils.stream.LoggingPublisher
+      - hu.icellmobilsoft.coffee.module.mp.restclient.provider.DefaultSettingClientRequestFilter
+      - hu.icellmobilsoft.coffee.rest.validation.xml.utils.XsdHelper
+      - hu.icellmobilsoft.coffee.rest.validation.xml.error.XsdValidationErrorCollector
+      - hu.icellmobilsoft.coffee.rest.validation.catalog.PublicCatalogResolver
+  log:
+    category:
+      "hu.icellmobilsoft":
+        level: ${TICKER_LOG_HU_ICELLMOBILSOFT_LEVEL:INFO}
+    console:
+      json: ${TICKER_LOG_CONSOLE_JSON_ENABLED:false}
+      format: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [thread:%t] [%c{10}] [sid:%X{extSessionId}] - %s%E%n"
+    handler:
+      gelf:
+        additional-field:
+          "moduleVersion":
+            value: ${TICKER_LOGSTASH_MODULE_VERSION:unknown}
+          "moduleId":
+            value: ${TICKER_LOGSTASH_MODULE_ID:unknown}
+          "K8S_NAMESPACE":
+            value: ${TICKER_LOGSTASH_K8S_NAMESPACE:unknown}
+        include-full-mdc: false
+    level: ${TICKER_LOG_LEVEL:INFO}
+    min-level: ${TICKER_LOG_MIN_LEVEL:ALL}
+
+  package:
+    add-runner-suffix: false
+    type: uber-jar
+  quartz:
+    clustered: false
+    thread-count: ${TICKER_QUARTZ_THREAD_COUNT:25}
+  scheduler:
+    start-mode: FORCED
+  smallrye-openapi:
+    info-title: Ticker service
+    info-version: ${quarkus.application.version}
+    info-description: >
+      REST endpoints for operations. <br/> 
+      General responses in case of error:  <br/> 
+      * __400__ - Bad Request <br/> 
+      * __401__ - Unauthorized <br/> 
+      * __404__ - Not found <br/> 
+      * __418__ - Database object not found <br/> 
+      * __500__ - Internal Server Error <br/>
+  swagger-ui:
+    enable: false
+

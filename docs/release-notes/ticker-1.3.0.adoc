@@ -1,0 +1,9 @@
+= ticker 1.3.0 [[ticker_1_3_0]]
+
+== Változások
+
+* 🚀 opensource projekt létesítése
+
+== Migráció
+
+A változások visszafelé kompatibilisek nem igényel migrációt.

@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"hu.icellmobilsoft.ticker.samples.mockapi","l":"MPTestRest"}];updateSearchResults();

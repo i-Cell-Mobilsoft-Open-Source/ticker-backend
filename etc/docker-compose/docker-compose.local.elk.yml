@@ -1,0 +1,48 @@
+version: "3.8"
+
+# run from project directory
+# docker-compose -f ./etc/docker-compose/docker-compose.local.elk.yml up --build --force-recreate
+
+services:
+  elasticsearch:
+    image: ${OSS_DOCKER_REPOSITORY}/elasticsearch:8.12.2
+    container_name: elasticsearch
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: false
+    ports:
+      - "9200:9200"
+    deploy:
+      resources:
+        limits:
+          #cpus: '0.4'
+          memory: 2G
+  logstash:
+    image: ${OSS_DOCKER_REPOSITORY}/logstash:8.12.2
+    container_name: logstash
+    volumes:
+      - ../config/logstash/config:/usr/share/logstash/pipeline
+    ports:
+      - "9300:9300"
+    deploy:
+      resources:
+        limits:
+          #cpus: '0.02'
+          memory: 1G
+  kibana:
+    image: ${OSS_DOCKER_REPOSITORY}/kibana:8.12.2
+    container_name: kibana
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    deploy:
+      resources:
+        limits:
+          #cpus: '0.01'
+          memory: 512M
+networks:
+  default:
+    external: true
+    # if it could not be found on compose up, then execute: docker network create ticker-local-network
+    name: ticker-local-network

@@ -1,0 +1,53 @@
+version: "3.8"
+
+# run
+# docker-compose -f <PROJECT_PATH>/ticker-backend/etc/docker-compose/docker-compose.local.ticker-service.yml up --build --force-recreate
+#
+# run from project directory
+# docker-compose -f ./etc/docker-compose/docker-compose.local.ticker-service.yml up --build --force-recreate
+#
+# enter container
+# docker exec -it ticker-core-quartz-service-dev /bin/bash
+#
+# empty run
+# docker run --rm -it ticker-core-quartz-service:develop-local /bin/bash
+services:
+  ticker-core-quartz-service-dev:
+    container_name: ticker-core-quartz-service-dev
+    build:
+      context: ../../
+      dockerfile: etc/docker-compose/local.Dockerfile
+      args:
+        ICELL_JAVA_17_JRE_BASE_IMAGE: '${OSS_DOCKER_REPOSITORY}/icellmobilsoft/base-java17jre:${DOCKER_BASE_IMAGE_VERSION}'
+        # opensource-ba ha kimegy ez használható
+        #ICELL_JAVA_17_JRE_BASE_IMAGE: 'eclipse-temurin:17.0.6_10-jre'
+    image: "ticker-core-quartz-service:develop-local-oss"
+    environment:
+      # With this config, service use application-dev.yml!
+      - MP_CONFIG_PROFILE=dev
+      # endpoint fix to mock
+      - QUARKUS_REST_CLIENT_MOCKAPI_URL=http://mock-service-local:1080
+      - TICKER_TIMER_JOB_TEST_APACHE_HTTP_CLIENT_GET_CONFIG_BASEURL=http://mock-service-local:1080/test
+      - TICKER_TIMER_JOB_TEST_APACHE_HTTP_CLIENT_POST_CONFIG_BASEURL=http://mock-service-local:1080/test
+      # Jaeger
+      - QUARKUS_JAEGER_ENABLED=false
+      #- QUARKUS_JAEGER_ENDPOINT=http://jaeger:14268/api/traces
+      # ELK
+      #- QUARKUS_LOG_HANDLER_GELF_ENABLED=true
+      #- QUARKUS_LOG_HANDLER_GELF_HOST=tcp:logstash
+      #- QUARKUS_LOG_HANDLER_GELF_PORT=9300
+      #- QUARKUS_LOG_HANDLER_GELF_INCLUDE_FULL_MDC=true
+    ports:
+      - '8081:8080' # REST
+      - '5006:5005' # Debug
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 512M
+networks:
+  default:
+    external: true
+    # if it could not be found on compose up, then execute: docker network create ticker-local-network
+    name: ticker-local-network

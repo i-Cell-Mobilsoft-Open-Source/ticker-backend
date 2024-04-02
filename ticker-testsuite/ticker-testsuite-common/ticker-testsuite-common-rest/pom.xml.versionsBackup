@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>hu.icellmobilsoft.ticker.testsuite</groupId>
+        <artifactId>ticker-testsuite-common</artifactId>
+        <version>1.2.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>ticker-testsuite-common-rest</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>hu.icellmobilsoft.roaster</groupId>
+            <artifactId>roaster-restassured</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>hu.icellmobilsoft.ticker</groupId>
+            <artifactId>ticker-common-dto</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>hu.icellmobilsoft.coffee</groupId>
+                    <artifactId>coffee-dto-gen</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.microprofile.rest.client</groupId>
+            <artifactId>microprofile-rest-client-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>hu.icellmobilsoft.coffee</groupId>
+            <artifactId>coffee-rest</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-jaxrs</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- excluded in org.apache.httpcomponents:httpclient but here it's needed -->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+        </dependency>
+    </dependencies>
+</project>

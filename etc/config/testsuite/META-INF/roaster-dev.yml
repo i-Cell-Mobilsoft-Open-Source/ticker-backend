@@ -1,0 +1,8 @@
+# For local quarkus:dev test
+ticker:
+    service:
+        ticker:
+            base:
+                uri: http://localhost:8080
+            quarkus:
+                uri: http://localhost:8080/q

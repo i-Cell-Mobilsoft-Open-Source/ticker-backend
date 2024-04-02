@@ -1,0 +1,104 @@
+@options
+@argfile
+-classpath
+'/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-dto/target/ticker-common-dto-1.3.0-SNAPSHOT.jar:/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-dto-gen/2.6.0/coffee-dto-gen-2.6.0.jar:/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-dto-xsd/2.6.0/coffee-dto-xsd-2.6.0.jar:/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-dto-base/2.6.0/coffee-dto-base-2.6.0.jar:/home/peterszabo/.m2/repository/org/eclipse/microprofile/openapi/microprofile-openapi-api/3.1.1/microprofile-openapi-api-3.1.1.jar:/home/peterszabo/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.0/jakarta.xml.bind-api-4.0.0.jar:/home/peterszabo/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.2/jakarta.activation-api-2.1.2.jar:/home/peterszabo/.m2/repository/org/eclipse/microprofile/rest/client/microprofile-rest-client-api/3.0.1/microprofile-rest-client-api-3.0.1.jar:/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-rest/2.6.0/coffee-rest-2.6.0.jar:/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-module-localization/2.6.0/coffee-module-localization-2.6.0.jar:/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-configuration/2.6.0/coffee-configuration-2.6.0.jar:/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-deltaspike-message/2.6.0/coffee-deltaspike-message-2.6.0.jar:/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-tool/2.6.0/coffee-tool-2.6.0.jar:/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-cdi/2.6.0/coffee-cdi-2.6.0.jar:/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-se-logging/2.6.0/coffee-se-logging-2.6.0.jar:/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-module-configdoc/2.6.0/coffee-module-configdoc-2.6.0.jar:/home/peterszabo/.m2/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar:/home/peterszabo/.m2/repository/org/jboss/logging/jboss-logging/3.5.1.Final/jboss-logging-3.5.1.Final.jar:/home/peterszabo/.m2/repository/jakarta/platform/jakarta.jakartaee-api/10.0.0/jakarta.jakartaee-api-10.0.0.jar:/home/peterszabo/.m2/repository/jakarta/platform/jakarta.jakartaee-web-api/10.0.0/jakarta.jakartaee-web-api-10.0.0.jar:/home/peterszabo/.m2/repository/jakarta/servlet/jakarta.servlet-api/6.0.0/jakarta.servlet-api-6.0.0.jar:/home/peterszabo/.m2/repository/jakarta/servlet/jsp/jakarta.servlet.jsp-api/3.1.0/jakarta.servlet.jsp-api-3.1.0.jar:/home/peterszabo/.m2/repository/jakarta/el/jakarta.el-api/5.0.1/jakarta.el-api-5.0.1.jar:/home/peterszabo/.m2/repository/jakarta/servlet/jsp/jstl/jakarta.servlet.jsp.jstl-api/3.0.0/jakarta.servlet.jsp.jstl-api-3.0.0.jar:/home/peterszabo/.m2/repository/jakarta/faces/jakarta.faces-api/4.0.1/jakarta.faces-api-4.0.1.jar:/home/peterszabo/.m2/repository/jakarta/ws/rs/jakarta.ws.rs-api/3.1.0/jakarta.ws.rs-api-3.1.0.jar:/home/peterszabo/.m2/repository/jakarta/websocket/jakarta.websocket-api/2.1.0/jakarta.websocket-api-2.1.0.jar:/home/peterszabo/.m2/repository/jakarta/websocket/jakarta.websocket-client-api/2.1.0/jakarta.websocket-client-api-2.1.0.jar:/home/peterszabo/.m2/repository/jakarta/json/jakarta.json-api/2.1.2/jakarta.json-api-2.1.2.jar:/home/peterszabo/.m2/repository/jakarta/json/bind/jakarta.json.bind-api/3.0.0/jakarta.json.bind-api-3.0.0.jar:/home/peterszabo/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/peterszabo/.m2/repository/jakarta/ejb/jakarta.ejb-api/4.0.1/jakarta.ejb-api-4.0.1.jar:/home/peterszabo/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/home/peterszabo/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/home/peterszabo/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar:/home/peterszabo/.m2/repository/jakarta/interceptor/jakarta.interceptor-api/2.1.0/jakarta.interceptor-api-2.1.0.jar:/home/peterszabo/.m2/repository/jakarta/enterprise/jakarta.enterprise.cdi-api/4.0.1/jakarta.enterprise.cdi-api-4.0.1.jar:/home/peterszabo/.m2/repository/jakarta/enterprise/jakarta.enterprise.lang-model/4.0.1/jakarta.enterprise.lang-model-4.0.1.jar:/home/peterszabo/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/home/peterszabo/.m2/repository/jakarta/authentication/jakarta.authentication-api/3.0.0/jakarta.authentication-api-3.0.0.jar:/home/peterszabo/.m2/repository/jakarta/security/enterprise/jakarta.security.enterprise-api/3.0.0/jakarta.security.enterprise-api-3.0.0.jar:/home/peterszabo/.m2/repository/jakarta/jms/jakarta.jms-api/3.1.0/jakarta.jms-api-3.1.0.jar:/home/peterszabo/.m2/repository/jakarta/mail/jakarta.mail-api/2.0.1/jakarta.mail-api-2.0.1.jar:/home/peterszabo/.m2/repository/jakarta/resource/jakarta.resource-api/2.1.0/jakarta.resource-api-2.1.0.jar:/home/peterszabo/.m2/repository/jakarta/authorization/jakarta.authorization-api/2.1.0/jakarta.authorization-api-2.1.0.jar:/home/peterszabo/.m2/repository/jakarta/batch/jakarta.batch-api/2.1.1/jakarta.batch-api-2.1.1.jar:/home/peterszabo/.m2/repository/org/eclipse/microprofile/config/microprofile-config-api/3.0.3/microprofile-config-api-3.0.3.jar:/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-dto-impl/2.6.0/coffee-dto-impl-2.6.0.jar:/home/peterszabo/.m2/repository/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar:/home/peterszabo/.m2/repository/com/google/guava/guava/32.0.0-jre/guava-32.0.0-jre.jar:/home/peterszabo/.m2/repository/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar:/home/peterszabo/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar:/home/peterszabo/.m2/repository/commons-codec/commons-codec/1.16.0/commons-codec-1.16.0.jar:/home/peterszabo/.m2/repository/org/jboss/resteasy/resteasy-core/6.2.4.Final/resteasy-core-6.2.4.Final.jar:/home/peterszabo/.m2/repository/org/jboss/resteasy/resteasy-core-spi/6.2.4.Final/resteasy-core-spi-6.2.4.Final.jar:/home/peterszabo/.m2/repository/commons-io/commons-io/2.13.0/commons-io-2.13.0.jar:/home/peterszabo/.m2/repository/org/apache/httpcomponents/httpclient/4.5.14/httpclient-4.5.14.jar:/home/peterszabo/.m2/repository/org/apache/httpcomponents/httpcore/4.4.16/httpcore-4.4.16.jar:/home/peterszabo/.m2/repository/org/apache/httpcomponents/httpmime/4.5.14/httpmime-4.5.14.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/src/main/java:/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2024 <a href="https://icellmobilsoft.hu">i-Cell Mobilsoft Zrt.</a>. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/target/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'ticker-common-api 1.3.0-SNAPSHOT API'
+-linkoffline
+'https://github.com/i-Cell-Mobilsoft-Open-Source/ticker/ticker-common/ticker-common-dto/apidocs' '/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-dto/target/apidocs'
+-use
+-version
+-windowtitle
+'ticker-common-api 1.3.0-SNAPSHOT API'
+'/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/src/main/java/hu/icellmobilsoft/ticker/common/api/system/ISystemRest.java'
+/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-dto/target/ticker-common-dto-1.3.0-SNAPSHOT.jar = 1712054250689
+/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-dto-gen/2.6.0/coffee-dto-gen-2.6.0.jar = 1710232595000
+/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-dto-xsd/2.6.0/coffee-dto-xsd-2.6.0.jar = 1710232615000
+/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-dto-base/2.6.0/coffee-dto-base-2.6.0.jar = 1710232602000
+/home/peterszabo/.m2/repository/org/eclipse/microprofile/openapi/microprofile-openapi-api/3.1.1/microprofile-openapi-api-3.1.1.jar = 1688420181000
+/home/peterszabo/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.0/jakarta.xml.bind-api-4.0.0.jar = 1647350669000
+/home/peterszabo/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.2/jakarta.activation-api-2.1.2.jar = 1682590051000
+/home/peterszabo/.m2/repository/org/eclipse/microprofile/rest/client/microprofile-rest-client-api/3.0.1/microprofile-rest-client-api-3.0.1.jar = 1664795961000
+/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-rest/2.6.0/coffee-rest-2.6.0.jar = 1710232546000
+/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-module-localization/2.6.0/coffee-module-localization-2.6.0.jar = 1710232597000
+/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-configuration/2.6.0/coffee-configuration-2.6.0.jar = 1710232582000
+/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-deltaspike-message/2.6.0/coffee-deltaspike-message-2.6.0.jar = 1710232572000
+/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-tool/2.6.0/coffee-tool-2.6.0.jar = 1710232555000
+/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-cdi/2.6.0/coffee-cdi-2.6.0.jar = 1710232566000
+/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-se-logging/2.6.0/coffee-se-logging-2.6.0.jar = 1710232567000
+/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-module-configdoc/2.6.0/coffee-module-configdoc-2.6.0.jar = 1710232584000
+/home/peterszabo/.m2/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar = 1447369876000
+/home/peterszabo/.m2/repository/org/jboss/logging/jboss-logging/3.5.1.Final/jboss-logging-3.5.1.Final.jar = 1685991759000
+/home/peterszabo/.m2/repository/jakarta/platform/jakarta.jakartaee-api/10.0.0/jakarta.jakartaee-api-10.0.0.jar = 1660020586000
+/home/peterszabo/.m2/repository/jakarta/platform/jakarta.jakartaee-web-api/10.0.0/jakarta.jakartaee-web-api-10.0.0.jar = 1660020584000
+/home/peterszabo/.m2/repository/jakarta/servlet/jakarta.servlet-api/6.0.0/jakarta.servlet-api-6.0.0.jar = 1652339973000
+/home/peterszabo/.m2/repository/jakarta/servlet/jsp/jakarta.servlet.jsp-api/3.1.0/jakarta.servlet.jsp-api-3.1.0.jar = 1650567686000
+/home/peterszabo/.m2/repository/jakarta/el/jakarta.el-api/5.0.1/jakarta.el-api-5.0.1.jar = 1655737670000
+/home/peterszabo/.m2/repository/jakarta/servlet/jsp/jstl/jakarta.servlet.jsp.jstl-api/3.0.0/jakarta.servlet.jsp.jstl-api-3.0.0.jar = 1646360232000
+/home/peterszabo/.m2/repository/jakarta/faces/jakarta.faces-api/4.0.1/jakarta.faces-api-4.0.1.jar = 1654212252000
+/home/peterszabo/.m2/repository/jakarta/ws/rs/jakarta.ws.rs-api/3.1.0/jakarta.ws.rs-api-3.1.0.jar = 1646083782000
+/home/peterszabo/.m2/repository/jakarta/websocket/jakarta.websocket-api/2.1.0/jakarta.websocket-api-2.1.0.jar = 1643013697000
+/home/peterszabo/.m2/repository/jakarta/websocket/jakarta.websocket-client-api/2.1.0/jakarta.websocket-client-api-2.1.0.jar = 1643013697000
+/home/peterszabo/.m2/repository/jakarta/json/jakarta.json-api/2.1.2/jakarta.json-api-2.1.2.jar = 1683805025000
+/home/peterszabo/.m2/repository/jakarta/json/bind/jakarta.json.bind-api/3.0.0/jakarta.json.bind-api-3.0.0.jar = 1645709349000
+/home/peterszabo/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar = 1655206218000
+/home/peterszabo/.m2/repository/jakarta/ejb/jakarta.ejb-api/4.0.1/jakarta.ejb-api-4.0.1.jar = 1651625504000
+/home/peterszabo/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar = 1648723059000
+/home/peterszabo/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar = 1645787726000
+/home/peterszabo/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar = 1653588099000
+/home/peterszabo/.m2/repository/jakarta/interceptor/jakarta.interceptor-api/2.1.0/jakarta.interceptor-api-2.1.0.jar = 1643175355000
+/home/peterszabo/.m2/repository/jakarta/enterprise/jakarta.enterprise.cdi-api/4.0.1/jakarta.enterprise.cdi-api-4.0.1.jar = 1652885430000
+/home/peterszabo/.m2/repository/jakarta/enterprise/jakarta.enterprise.lang-model/4.0.1/jakarta.enterprise.lang-model-4.0.1.jar = 1652885429000
+/home/peterszabo/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar = 1634410593000
+/home/peterszabo/.m2/repository/jakarta/authentication/jakarta.authentication-api/3.0.0/jakarta.authentication-api-3.0.0.jar = 1646694727000
+/home/peterszabo/.m2/repository/jakarta/security/enterprise/jakarta.security.enterprise-api/3.0.0/jakarta.security.enterprise-api-3.0.0.jar = 1648233970000
+/home/peterszabo/.m2/repository/jakarta/jms/jakarta.jms-api/3.1.0/jakarta.jms-api-3.1.0.jar = 1646145683000
+/home/peterszabo/.m2/repository/jakarta/mail/jakarta.mail-api/2.0.1/jakarta.mail-api-2.0.1.jar = 1615231736000
+/home/peterszabo/.m2/repository/jakarta/resource/jakarta.resource-api/2.1.0/jakarta.resource-api-2.1.0.jar = 1650564155000
+/home/peterszabo/.m2/repository/jakarta/authorization/jakarta.authorization-api/2.1.0/jakarta.authorization-api-2.1.0.jar = 1646697081000
+/home/peterszabo/.m2/repository/jakarta/batch/jakarta.batch-api/2.1.1/jakarta.batch-api-2.1.1.jar = 1655220918000
+/home/peterszabo/.m2/repository/org/eclipse/microprofile/config/microprofile-config-api/3.0.3/microprofile-config-api-3.0.3.jar = 1680777073000
+/home/peterszabo/.m2/repository/hu/icellmobilsoft/coffee/coffee-dto-impl/2.6.0/coffee-dto-impl-2.6.0.jar = 1710232590000
+/home/peterszabo/.m2/repository/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar = 1614372051000
+/home/peterszabo/.m2/repository/com/google/guava/guava/32.0.0-jre/guava-32.0.0-jre.jar = 1685140132000
+/home/peterszabo/.m2/repository/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar = 1542650246000
+/home/peterszabo/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar = 1673019840000
+/home/peterszabo/.m2/repository/commons-codec/commons-codec/1.16.0/commons-codec-1.16.0.jar = 1687047316000
+/home/peterszabo/.m2/repository/org/jboss/resteasy/resteasy-core/6.2.4.Final/resteasy-core-6.2.4.Final.jar = 1684203079000
+/home/peterszabo/.m2/repository/org/jboss/resteasy/resteasy-core-spi/6.2.4.Final/resteasy-core-spi-6.2.4.Final.jar = 1684203059000
+/home/peterszabo/.m2/repository/commons-io/commons-io/2.13.0/commons-io-2.13.0.jar = 1685810353000
+/home/peterszabo/.m2/repository/org/apache/httpcomponents/httpclient/4.5.14/httpclient-4.5.14.jar = 1669833653000
+/home/peterszabo/.m2/repository/org/apache/httpcomponents/httpcore/4.4.16/httpcore-4.4.16.jar = 1669455900000
+/home/peterszabo/.m2/repository/org/apache/httpcomponents/httpmime/4.5.14/httpmime-4.5.14.jar = 1669833664000
+/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/src/main/java = 1663739557000
+/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/target/generated-sources/annotations = 1712054251925
+/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/target/apidocs/help-doc.html = 1712054252941
+/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/target/apidocs/index-all.html = 1712054252937
+/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/target/apidocs/element-list = 1712054252901
+/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/target/apidocs/stylesheet.css = 1712054252945
+/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/target/apidocs/jquery-ui.overrides.css = 1712054252949
+/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/target/apidocs/index.html = 1712054252941
+/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/target/apidocs/overview-tree.html = 1712054252921
+/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/target/apidocs/allclasses-index.html = 1712054252929
+/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/target/apidocs/module-search-index.js = 1712054252933
+/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/target/apidocs/search.js = 1712054252945
+/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/target/apidocs/script.js = 1712054252945
+/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/target/apidocs/type-search-index.js = 1712054252933
+/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/target/apidocs/package-search-index.js = 1712054252933
+/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/target/apidocs/allpackages-index.html = 1712054252933
+/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/target/apidocs/tag-search-index.js = 1712054252933
+/home/peterszabo/GIT/ICELL/GitHub/ticker-backend/ticker-common/ticker-common-api/target/apidocs/member-search-index.js = 1712054252933
