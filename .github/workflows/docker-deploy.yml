@@ -74,5 +74,5 @@ jobs:
           set: |
             *.platform=${{ env.DOCKER_BAKE_PLATFORM }}
           push: true
-          source: etc/release
+          workdir: etc/release
           targets: ticker-core-quartz-service-release
