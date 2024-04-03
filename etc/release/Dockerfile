@@ -10,7 +10,7 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en'
 ################################################################################
 # Download .jar
 ################################################################################
-FROM docker.io/icellmobilsoft/builder-nexus-download:1.4.0 as download
+FROM docker.io/icellmobilsoft/builder-nexus-download:1.4.1 as download
 
 ARG POM_GROUP_ID
 ARG POM_ARTIFACT_ID
@@ -30,7 +30,7 @@ ENV NEXUS_OBJECT_ARTIFACT_ID=$POM_ARTIFACT_ID
 ENV NEXUS_OBJECT_EXTENSION=$POM_EXTENSION
 ENV NEXUS_OBJECT_VERSION=$POM_VERSION
 
-RUN $HOME/script/sonatype-download.sh
+RUN $HOME/script/maven-search-download.sh
 
 ################################################################################
 # Create production image
