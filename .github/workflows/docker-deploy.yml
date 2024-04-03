@@ -28,8 +28,7 @@ jobs:
     runs-on: ubuntu-latest
 
     # run only on main
-    # TODO - teszt
-#    if: (github.ref_name == 'main' && contains('["rombow","czenczl","speter555"]', github.actor))
+    if: (github.ref_name == 'main' && contains('["rombow","czenczl","speter555"]', github.actor))
 
     steps:
 
