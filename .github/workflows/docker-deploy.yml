@@ -71,14 +71,8 @@ jobs:
       - name: docker buildx bake services
         uses: docker/bake-action@v4.3.0
         with:
-          env:
-            OSS_DOCKER_REPOSITORY=docker.io
-            OSS_BASEIMAGE_VERSION=1.4.0
-            DOCKER_SERVICE_TICKER_CORE_QUARTZ_SERVICE=icellmobilsoft/ticker-core-quartz-service
-            RELEASED_VERSION=${{steps.getVersion.outputs.PROJECT_VERSION}}
           set: |
             *.platform=${{ env.DOCKER_BAKE_PLATFORM }}
           push: true
-          files: |
-            etc/release/docker-compose.yml
+          source: etc/release
           targets: ticker-core-quartz-service-release
