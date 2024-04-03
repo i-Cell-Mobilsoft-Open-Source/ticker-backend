@@ -30,7 +30,7 @@ ENV NEXUS_OBJECT_ARTIFACT_ID=$POM_ARTIFACT_ID
 ENV NEXUS_OBJECT_EXTENSION=$POM_EXTENSION
 ENV NEXUS_OBJECT_VERSION=$POM_VERSION
 
-RUN $HOME/script/maven-search-download.sh
+RUN $HOME/script/sonatype-download.sh
 
 ################################################################################
 # Create production image
