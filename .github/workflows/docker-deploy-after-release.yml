@@ -3,7 +3,7 @@ name: docker-deploy-after-release
 on:
   # the 1st condition
   workflow_run:
-    workflows: [ "manual-main-RELEASE","manual-branch-RELEASE" ]
+    workflows: [ "manual-RELEASE","manual-RELEASE" ]
     types:
       - completed
 # TODO - manual fix docker deploy after successfully maven release ?
