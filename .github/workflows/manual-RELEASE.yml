@@ -20,8 +20,9 @@ jobs:
 
     steps:
       - name: Release
-        uses: speter555/gh-action-mvn-release-main@v0.27.0
+        uses: speter555/gh-action-mvn-release-main@v0.28.0
         with:
+          GITHUB_TOKEN: '${{ secrets.GH_TOKEN_TECHUSER_JAVA }}'
           ARTIFACT_STORE_SERVER_ID: 'ossrh'
           SETTINGS_XML_PATH: '.github/.m2/settings.xml'
           GPG_KEY_ID_GITHUB_TECHUSER: '${{ secrets.GPG_KEY_ID_GITHUB_TECHUSER }}'
