@@ -14,7 +14,7 @@
     <packaging>pom</packaging>
 
     <description>Ticker - Scheduler module, perform periodic operations based on configuration - powered By Quarkus 3+</description>
-    <url>https://github.com/i-Cell-Mobilsoft-Open-Source/ticker</url>
+    <url>https://github.com/i-Cell-Mobilsoft-Open-Source/ticker-backend</url>
     <inceptionYear>2024</inceptionYear>
 
     <properties>
@@ -32,9 +32,9 @@
     </modules>
 
     <scm>
-        <connection>scm:git:git@github.com:i-Cell-Mobilsoft-Open-Source/ticker.git</connection>
-        <developerConnection>scm:git:git@github.com:i-Cell-Mobilsoft-Open-Source/ticker.git</developerConnection>
-        <url>https://github.com/i-Cell-Mobilsoft-Open-Source/ticker</url>
+        <connection>scm:git:git@github.com:i-Cell-Mobilsoft-Open-Source/ticker-backend.git</connection>
+        <developerConnection>scm:git:git@github.com:i-Cell-Mobilsoft-Open-Source/ticker-backend.git</developerConnection>
+        <url>https://github.com/i-Cell-Mobilsoft-Open-Source/ticker-backend</url>
         <tag>HEAD</tag>
     </scm>
 
