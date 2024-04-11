@@ -27,9 +27,6 @@ jobs:
   docker-build:
     runs-on: ubuntu-latest
 
-    # run only on main
-    if: contains('["rombow","czenczl","speter555"]', github.actor)
-
     steps:
 
       # https://github.com/actions/checkout
@@ -73,6 +70,7 @@ jobs:
           set: |
             *.platform=${{ env.DOCKER_BAKE_PLATFORM }}
           push: true
+          workdir: etc/release
           files: |
             etc/release/docker-compose.yml
           targets: ticker-core-quartz-service-release

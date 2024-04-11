@@ -74,4 +74,6 @@ jobs:
             *.platform=${{ env.DOCKER_BAKE_PLATFORM }}
           push: true
           workdir: etc/release
+          files: |
+            etc/release/docker-compose.yml
           targets: ticker-core-quartz-service-release
