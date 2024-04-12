@@ -1,6 +1,9 @@
 name: docker-deploy
 
 on:
+  push:
+    tags:
+      - *
   # the 1st condition
   workflow_run:
     workflows: [ "maven-deploy" ]
@@ -28,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
 
     # run only on main
-    if: (github.ref_name == 'main' && contains('["rombow","czenczl","speter555"]', github.actor))
+    if: (github.ref_name == 'main' && contains('["rombow","czenczl","speter555"]', github.actor) || startsWith(github.ref, 'refs/tags/'))
 
     steps:
 
