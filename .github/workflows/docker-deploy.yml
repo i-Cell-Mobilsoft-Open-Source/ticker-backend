@@ -3,7 +3,7 @@ name: docker-deploy
 on:
   push:
     tags:
-      - *
+      - ticker-*
   # the 1st condition
   workflow_run:
     workflows: [ "maven-deploy" ]
