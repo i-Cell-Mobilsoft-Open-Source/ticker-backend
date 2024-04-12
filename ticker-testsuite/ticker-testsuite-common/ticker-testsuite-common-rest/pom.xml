@@ -3,7 +3,7 @@
     <parent>
         <groupId>hu.icellmobilsoft.ticker.testsuite</groupId>
         <artifactId>ticker-testsuite-common</artifactId>
-        <version>1.3.0-SNAPSHOT</version>
+        <version>1.3.0</version>
     </parent>
 
     <artifactId>ticker-testsuite-common-rest</artifactId>
