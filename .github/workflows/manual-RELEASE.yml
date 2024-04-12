@@ -16,7 +16,7 @@ jobs:
   mvn-release:
     runs-on: ubuntu-latest
     # run only on main
-    if: (github.ref_name == 'main' && contains('["rombow","czenczl","speter555"]', github.actor))
+    if: (contains('["rombow","czenczl","speter555"]', github.actor))
 
     steps:
       - name: Release
