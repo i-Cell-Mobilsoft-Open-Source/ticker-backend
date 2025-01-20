@@ -149,10 +149,6 @@ public class QuartzJobUtil {
         return new JobKey(jobType + "-Job", GROUP);
     }
 
-    private static ScheduleBuilder<CronTrigger> scheduleBuilder(String cron) {
-        return CronScheduleBuilder.cronSchedule(cron);
-    }
-
     private static String triggerDescription(String jobType) {
         return jobType + " trigger";
     }

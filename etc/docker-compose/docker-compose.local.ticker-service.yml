@@ -1,5 +1,3 @@
-version: "3.8"
-
 # run
 # docker-compose -f <PROJECT_PATH>/ticker-backend/etc/docker-compose/docker-compose.local.ticker-service.yml up --build --force-recreate
 #
@@ -48,6 +46,4 @@ services:
           memory: 512M
 networks:
   default:
-    external: true
-    # if it could not be found on compose up, then execute: docker network create ticker-local-network
     name: ticker-local-network

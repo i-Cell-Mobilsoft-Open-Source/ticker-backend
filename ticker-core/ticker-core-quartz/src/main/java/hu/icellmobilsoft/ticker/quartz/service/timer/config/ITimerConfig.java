@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,11 +21,11 @@ package hu.icellmobilsoft.ticker.quartz.service.timer.config;
 
 import java.util.List;
 
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 
 /**
  * Timer configuration values
- * 
+ *
  * @author Imre Scheffer
  * @author mate.biro
  * @since 0.1.0
@@ -64,14 +64,14 @@ public interface ITimerConfig {
 
     /**
      * Active job list <code>ticker.timer.activeJobs</code>
-     * 
+     *
      * @return active job names
      */
     List<String> activeJobs();
 
     /**
      * Job code name <code>ticker.timer.job.{0}.code</code>
-     * 
+     *
      * @return code name
      * @throws BaseException
      *             exception
@@ -80,7 +80,7 @@ public interface ITimerConfig {
 
     /**
      * Cron periodicity <code>ticker.timer.job.{0}.cron</code>
-     * 
+     *
      * @return cron formatted value
      * @throws BaseException
      *             exception
@@ -89,7 +89,7 @@ public interface ITimerConfig {
 
     /**
      * Called action class <code>ticker.timer.job.{0}.actionClass</code>
-     * 
+     *
      * @return Action class full name
      * @throws BaseException
      *             exception

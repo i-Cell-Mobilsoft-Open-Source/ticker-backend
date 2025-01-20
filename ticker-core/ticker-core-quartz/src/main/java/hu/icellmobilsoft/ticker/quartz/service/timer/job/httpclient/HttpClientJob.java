@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,10 +37,10 @@ import org.apache.http.entity.ContentType;
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.JobExecutionContext;
 
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
-import hu.icellmobilsoft.coffee.dto.exception.TechnicalException;
 import hu.icellmobilsoft.coffee.dto.exception.enums.CoffeeFaultType;
-import hu.icellmobilsoft.coffee.tool.gson.JsonUtil;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
+import hu.icellmobilsoft.coffee.se.api.exception.TechnicalException;
+import hu.icellmobilsoft.coffee.tool.utils.json.JsonUtil;
 import hu.icellmobilsoft.coffee.tool.utils.marshalling.MarshallingUtil;
 import hu.icellmobilsoft.ticker.quartz.service.quartz.BaseCronJob;
 import hu.icellmobilsoft.ticker.quartz.service.timer.job.JobRegistrar;
@@ -133,7 +133,9 @@ public class HttpClientJob extends BaseCronJob {
             } else if (StringUtils.equalsIgnoreCase(method, "DELETE")) {
                 httpClient.sendClientDelete(baseUrl);
             } else {
-                throw new TechnicalException(MessageFormat.format("Wrong method. Use Get, Post, Put or Delete! Method is : [{0}]", method));
+                throw new TechnicalException(
+                        CoffeeFaultType.OPERATION_FAILED,
+                        MessageFormat.format("Wrong method. Use Get, Post, Put or Delete! Method is : [{0}]", method));
             }
         } catch (Exception e) {
             throw new TechnicalException(

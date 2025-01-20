@@ -1,0 +1,17 @@
+= ticker 1.4.0 [[ticker_1_4_0]]
+
+== Változások
+
+* `coffee` verzió emelés `2.6.0` -> `2.9.0`:
+** https://i-cell-mobilsoft-open-source.github.io/coffee/#_v2_6_0_v2_7_0[2.6.0 -> 2.7.0]
+** https://i-cell-mobilsoft-open-source.github.io/coffee/#_v2_7_0_v2_8_0[2.7.0 -> 2.8.0]
+** https://i-cell-mobilsoft-open-source.github.io/coffee/#_v2_8_0_v2_9_0[2.8.0 -> 2.9.0]
+* `roaster` verzió emelés `2.1.0` -> `2.5.0`:
+** https://i-cell-mobilsoft-open-source.github.io/roaster/#_2_1_0_2_2_0[2.1.0 -> 2.2.0]
+** https://i-cell-mobilsoft-open-source.github.io/roaster/#_2_2_0_2_3_0[2.2.0 -> 2.3.0]
+** https://i-cell-mobilsoft-open-source.github.io/roaster/#_2_3_0_2_4_0[2.3.0 -> 2.4.0]
+** https://i-cell-mobilsoft-open-source.github.io/roaster/#_2_4_0_2_5_0[2.4.0 -> 2.5.0]
+
+== Migráció
+
+A változások visszafelé kompatibilisek nem igényel migrációt.

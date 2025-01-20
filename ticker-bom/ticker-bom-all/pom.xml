@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <version.coffee>2.6.0</version.coffee>
+        <version.coffee>2.9.0</version.coffee>
         <version.commons-collections4>4.4</version.commons-collections4>
 
         <version.commons-collections>3.2.2</version.commons-collections>

@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,11 +33,11 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.util.EntityUtils;
 
 import hu.icellmobilsoft.coffee.dto.common.LogConstants;
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
-import hu.icellmobilsoft.coffee.dto.exception.BusinessException;
-import hu.icellmobilsoft.coffee.dto.exception.TechnicalException;
 import hu.icellmobilsoft.coffee.dto.exception.enums.CoffeeFaultType;
 import hu.icellmobilsoft.coffee.rest.apache.BaseApacheHttpClient;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
+import hu.icellmobilsoft.coffee.se.api.exception.BusinessException;
+import hu.icellmobilsoft.coffee.se.api.exception.TechnicalException;
 import hu.icellmobilsoft.coffee.se.logging.mdc.MDC;
 
 /**
@@ -75,6 +75,7 @@ public class ApacheHttpClient extends BaseApacheHttpClient {
     public void addToHeader(String key, String value) throws BaseException {
         if (StringUtils.isBlank(key) || StringUtils.isBlank(value)) {
             throw new BusinessException(
+                    CoffeeFaultType.OPERATION_FAILED,
                     MessageFormat.format("Error during add header param to http call. Key is: [{0}], Value is: [{1}]", key, value));
         }
         headers.put(key, value);
