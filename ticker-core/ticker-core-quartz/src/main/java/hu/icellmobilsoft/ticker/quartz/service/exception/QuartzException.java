@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,8 +19,8 @@
  */
 package hu.icellmobilsoft.ticker.quartz.service.exception;
 
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
 import hu.icellmobilsoft.coffee.dto.exception.enums.CoffeeFaultType;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 
 /**
  * Common exception for Scheduler module.
@@ -38,7 +38,7 @@ public class QuartzException extends BaseException {
 
     /**
      * Constructor with message
-     * 
+     *
      * @param message
      *            exception message
      */
@@ -48,7 +48,7 @@ public class QuartzException extends BaseException {
 
     /**
      * Constructor with message and throwable
-     * 
+     *
      * @param message
      *            exception message
      * @param e

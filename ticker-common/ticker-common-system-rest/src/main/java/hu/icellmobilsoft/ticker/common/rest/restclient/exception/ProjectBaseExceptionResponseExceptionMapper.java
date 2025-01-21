@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,10 +30,10 @@ import hu.icellmobilsoft.coffee.dto.common.commonservice.BusinessFault;
 import hu.icellmobilsoft.coffee.dto.common.commonservice.TechnicalFault;
 import hu.icellmobilsoft.coffee.dto.exception.AccessDeniedException;
 import hu.icellmobilsoft.coffee.dto.exception.BONotFoundException;
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
 import hu.icellmobilsoft.coffee.module.mp.restclient.RestClientPriority;
 import hu.icellmobilsoft.coffee.module.mp.restclient.exception.FaultTypeParser;
 import hu.icellmobilsoft.coffee.module.mp.restclient.provider.DefaultBaseExceptionResponseExceptionMapper;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 
 /**
  * Default REST client exception converter. ExceptionMapping packs this to WebApplicationException with the same cause thrown here

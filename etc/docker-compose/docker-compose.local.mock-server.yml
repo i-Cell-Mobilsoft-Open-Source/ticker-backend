@@ -1,5 +1,3 @@
-version: "3.8"
-
 #
 # futtatas:
 # docker compose -f docker-compose.local.mock-server.yml up --build --force-recreate
@@ -30,6 +28,4 @@ services:
           memory: 256M
 networks:
   default:
-    external: true
-    # if it could not be found on compose up, then execute: docker network create ticker-local-network
     name: ticker-local-network
