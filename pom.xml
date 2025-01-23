@@ -19,7 +19,7 @@
 
     <properties>
         <project.scm.id>icell-github-server</project.scm.id>
-        <quarkus.platform.version>3.2.5.Final</quarkus.platform.version>
+        <quarkus.platform.version>3.15.3</quarkus.platform.version>
     </properties>
 
     <modules>

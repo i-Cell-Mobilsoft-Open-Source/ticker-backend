@@ -19,7 +19,7 @@
 
         <dependency>
             <groupId>hu.icellmobilsoft.coffee</groupId>
-            <artifactId>coffee-module-mp-opentracing</artifactId>
+            <artifactId>coffee-module-mp-telemetry</artifactId>
         </dependency>
 
         <dependency>
@@ -27,18 +27,11 @@
             <artifactId>coffee-configuration</artifactId>
         </dependency>
 
-        <!-- MP apis dependencies -->
-        <dependency>
-            <groupId>org.eclipse.microprofile.opentracing</groupId>
-            <artifactId>microprofile-opentracing-api</artifactId>
-        </dependency>
-
         <!-- Jakarta dependencies -->
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
         </dependency>
-
 
     </dependencies>
 </project>

@@ -2,16 +2,40 @@
 
 == Változások
 
-* `coffee` verzió emelés `2.6.0` -> `2.9.0`:
-** https://i-cell-mobilsoft-open-source.github.io/coffee/#_v2_6_0_v2_7_0[2.6.0 -> 2.7.0]
-** https://i-cell-mobilsoft-open-source.github.io/coffee/#_v2_7_0_v2_8_0[2.7.0 -> 2.8.0]
-** https://i-cell-mobilsoft-open-source.github.io/coffee/#_v2_8_0_v2_9_0[2.8.0 -> 2.9.0]
-* `roaster` verzió emelés `2.1.0` -> `2.5.0`:
-** https://i-cell-mobilsoft-open-source.github.io/roaster/#_2_1_0_2_2_0[2.1.0 -> 2.2.0]
-** https://i-cell-mobilsoft-open-source.github.io/roaster/#_2_2_0_2_3_0[2.2.0 -> 2.3.0]
-** https://i-cell-mobilsoft-open-source.github.io/roaster/#_2_3_0_2_4_0[2.3.0 -> 2.4.0]
-** https://i-cell-mobilsoft-open-source.github.io/roaster/#_2_4_0_2_5_0[2.4.0 -> 2.5.0]
+=== `coffee` verzió emelés `2.6.0` -> `2.9.0`:
 
-== Migráció
+* https://i-cell-mobilsoft-open-source.github.io/coffee/#_v2_6_0_v2_7_0[2.6.0 -> 2.7.0]
+* https://i-cell-mobilsoft-open-source.github.io/coffee/#_v2_7_0_v2_8_0[2.7.0 -> 2.8.0]
+* https://i-cell-mobilsoft-open-source.github.io/coffee/#_v2_8_0_v2_9_0[2.8.0 -> 2.9.0]
+
+==== Migráció
 
 A változások visszafelé kompatibilisek nem igényel migrációt.
+
+=== `roaster` verzió emelés `2.1.0` -> `2.5.0`:
+
+* https://i-cell-mobilsoft-open-source.github.io/roaster/#_2_1_0_2_2_0[2.1.0 -> 2.2.0]
+* https://i-cell-mobilsoft-open-source.github.io/roaster/#_2_2_0_2_3_0[2.2.0 -> 2.3.0]
+* https://i-cell-mobilsoft-open-source.github.io/roaster/#_2_3_0_2_4_0[2.3.0 -> 2.4.0]
+* https://i-cell-mobilsoft-open-source.github.io/roaster/#_2_4_0_2_5_0[2.4.0 -> 2.5.0]
+
+==== Migráció
+
+A változások visszafelé kompatibilisek nem igényel migrációt.
+
+=== Quarkus verzió emelés `3.2.5.Final` -> `3.15.3`
+
+* Observability: OpenTracing -> OpenTelemetry
+* Quarkus konfiguráció változás
+
+==== Migráció
+
+* Observability Jaeger konfiguráció:
+** OTLP collector engedélyezése és port beállítása, lásd `docker-compose.local.observability.yml`
+* MicroProfile (`microprofile-config.yml`) és környezeti változók (`docker-compose.local.ticker-service.yml`):
+** `quarkus.jaeger.enabled` -> `quarkus.otel.enabled` (`QUARKUS_OTEL_ENABLED`)
+** új `quarkus.otel.traces.exporter` (`QUARKUS_OTEL_TRACES_EXPORTER`)
+** `quarkus.jaeger.endpoint` -> `quarkus.otel.exporter.otlp.traces.endpoint` (`QUARKUS_OTEL_EXPORTER_OTLP_TRACES_ENDPOINT`)
+** `quarkus.package.add-runner-suffix` -> `quarkus.package.jar.add-runner-suffix`
+** `quarkus.package.type` -> `quarkus.package.jar.type`
+** bővebben: https://quarkus.io/version/3.15/guides/all-config

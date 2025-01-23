@@ -13,8 +13,8 @@
     <properties>
         <version.coffee>2.9.0</version.coffee>
         <version.commons-collections4>4.4</version.commons-collections4>
-
         <version.commons-collections>3.2.2</version.commons-collections>
+        <version.opentelemetry.exporter.jaeger>1.34.1</version.opentelemetry.exporter.jaeger>
     </properties>
 
     <dependencyManagement>
@@ -68,6 +68,11 @@
                 <groupId>commons-collections</groupId>
                 <artifactId>commons-collections</artifactId>
                 <version>${version.commons-collections}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.opentelemetry</groupId>
+                <artifactId>opentelemetry-exporter-jaeger</artifactId>
+                <version>${version.opentelemetry.exporter.jaeger}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

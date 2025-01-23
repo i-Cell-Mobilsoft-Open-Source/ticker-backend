@@ -27,9 +27,10 @@ services:
       - QUARKUS_REST_CLIENT_MOCKAPI_URL=http://mock-service-local:1080
       - TICKER_TIMER_JOB_TEST_APACHE_HTTP_CLIENT_GET_CONFIG_BASEURL=http://mock-service-local:1080/test
       - TICKER_TIMER_JOB_TEST_APACHE_HTTP_CLIENT_POST_CONFIG_BASEURL=http://mock-service-local:1080/test
-      # Jaeger
-      - QUARKUS_JAEGER_ENABLED=false
-      #- QUARKUS_JAEGER_ENDPOINT=http://jaeger:14268/api/traces
+      # OpenTelemetry
+      - QUARKUS_OTEL_ENABLED=false
+      #- QUARKUS_OTEL_TRACES_EXPORTER=jaeger
+      #- QUARKUS_OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://jaeger:4317
       # ELK
       #- QUARKUS_LOG_HANDLER_GELF_ENABLED=true
       #- QUARKUS_LOG_HANDLER_GELF_HOST=tcp:logstash

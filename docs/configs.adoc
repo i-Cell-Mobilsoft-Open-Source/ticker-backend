@@ -4,7 +4,7 @@
 
 Az alkalmazás mivel Quarkus alapú, így a quarkus alap beállításai használhatóak benne.
 
-A leírás itt található meg: https://quarkus.io/version/3.2/guides/all-config
+A leírás itt található meg: https://quarkus.io/version/3.15/guides/all-config
 
 NOTE: A configuráció listából, csak azon elemek aktívak, melyek dependency szinten be vannak téve a projektbe.
 
@@ -15,7 +15,7 @@ Fontosabb elemek, melyek alapból már definiálva vannak a projekttel:
 |===
 | Quarkus config key | Description | Env variable | Default value
 
-| quarkus.arc.remove-unused-beans | Arc setting - remove unused beans: https://quarkus.io/version/3.2/guides/all-config#quarkus-arc_quarkus.arc.remove-unused-beans[Link] | - | false
+| quarkus.arc.remove-unused-beans | Arc setting - remove unused beans: https://quarkus.io/version/3.15/guides/all-config#quarkus-arc_quarkus.arc.remove-unused-beans[Link] | - | false
 
 | quarkus.log.category."hu.icellmobilsoft".level | hu.icellmobilsoft category log level | TICKER_LOG_HU_ICELLMOBILSOFT_LEVEL | INFO
 
@@ -27,24 +27,25 @@ Fontosabb elemek, melyek alapból már definiálva vannak a projekttel:
 | quarkus.log.handler.gelf.additional-field."moduleId".value | Gelf log - *moduleId* additional-field value | TICKER_LOGSTASH_MODULE_ID | unknown
 | quarkus.log.handler.gelf.additional-field."K8S_NAMESPACE".value | Gelf log - *K8S_NAMESPACE* additional-field value | TICKER_LOGSTASH_K8S_NAMESPACE | unknown
 | quarkus.handler.gelf.include-full-mdc | Gelf log - Whether to include all fields from the MDC. | TICKER_LOGSTASH_K8S_NAMESPACE | false
-| quarkus.log.level | Quarkus log level: https://quarkus.io/version/3.2/guides/all-config#quarkus-core_quarkus.log.level[Link] | TICKER_LOG_LEVEL | INFO
-| quarkus.log.min-level | Quarkus min log level: https://quarkus.io/version/3.2/guides/all-config#quarkus-core_quarkus.log.min-level[Link] | TICKER_LOG_MIN_LEVEL | ALL
+| quarkus.log.level | Quarkus log level: https://quarkus.io/version/3.15/guides/all-config#quarkus-core_quarkus.log.level[Link] | TICKER_LOG_LEVEL | INFO
+| quarkus.log.min-level | Quarkus min log level: https://quarkus.io/version/3.15/guides/all-config#quarkus-core_quarkus.log.min-level[Link] | TICKER_LOG_MIN_LEVEL | ALL
 
 
-| quarkus.jaeger.enabled | Jaeger - enabled config: https://quarkus.io/version/3.2/guides/all-config#quarkus-jaeger_quarkus.jaeger.enabled[Link] | TICKER_JAEGER_ENABLED |false
-| quarkus.jaeger.endpoint | Jaeger - : https://[Link] | QUARKUS_JAEGER_ENDPOINT=http://jaeger:14268/api/traces | - (for example: http://jaeger:14268/api/traces  )
-| quarkus.package.add-runner-suffix | Quarkus package add runner suffix: https://quarkus.io/version/3.2/guides/all-config#quarkus-jaeger_quarkus.jaeger.endpoint[Link] | - | false
-| quarkus.package.type | Quarkus package type: https://quarkus.io/version/3.2/guides/all-config#quarkus-core_quarkus.package.type[Link] | - | uber-jar
+| quarkus.otel.enabled | OpenTelemetry - enabled config: https://quarkus.io/version/3.15/guides/all-config#quarkus-opentelemetry_quarkus-otel-enabled[Link] | QUARKUS_OTEL_ENABLED | false
+| quarkus.otel.traces.exporter | OpenTelemetry trace exporter - : https://quarkus.io/version/3.15/guides/all-config#quarkus-opentelemetry_quarkus-otel-traces-exporter[Link] | QUARKUS_OTEL_TRACES_EXPORTER | jaeger
+| quarkus.otel.exporter.otlp.traces.endpoint | OpenTelemetry endpoint - : https://quarkus.io/version/3.15/guides/all-config#quarkus-opentelemetry_quarkus-otel-exporter-otlp-endpoint[Link] | QUARKUS_OTEL_EXPORTER_OTLP_TRACES_ENDPOINT | http://localhost:4317
+| quarkus.package.jar.add-runner-suffix | Quarkus package add runner suffix: https://quarkus.io/version/3.15/guides/all-config#quarkus-core_quarkus-package-jar-add-runner-suffix[Link] | - | false
+| quarkus.package.jar.type | Quarkus package JAR type: https://quarkus.io/version/3.15/guides/all-config#quarkus-core_quarkus-package-jar-type[Link] | - | uber-jar
 
 
-| quarkus.quartz.clustered | Quartz - clustered : https://quarkus.io/version/3.2/guides/all-config#quarkus-quartz_quarkus.quartz.clustered[Link] | - | false
-| quarkus.quartz.thread-count | Quartz - thread count : https://quarkus.io/version/3.2/guides/all-config#quarkus-quartz_quarkus.quartz.thread-count[Link] | TICKER_QUARTZ_THREAD_COUNT | 25
-| quarkus.scheduler.start-mode | Quartz - start mode : https://quarkus.io/version/3.2/guides/all-config#quarkus-scheduler_quarkus.scheduler.start-mode[Link] | - | FORCED
+| quarkus.quartz.clustered | Quartz - clustered : https://quarkus.io/version/3.15/guides/all-config#quarkus-quartz_quarkus.quartz.clustered[Link] | - | false
+| quarkus.quartz.thread-count | Quartz - thread count : https://quarkus.io/version/3.15/guides/all-config#quarkus-quartz_quarkus.quartz.thread-count[Link] | TICKER_QUARTZ_THREAD_COUNT | 25
+| quarkus.scheduler.start-mode | Quartz - start mode : https://quarkus.io/version/3.15/guides/all-config#quarkus-scheduler_quarkus.scheduler.start-mode[Link] | - | FORCED
 
-| quarkus.smallrye-openapi.info-title | Openapi - info title : https://quarkus.io/version/3.2/guides/all-config#quarkus-smallrye-openapi_quarkus.smallrye-openapi.info-title[Link] | - | Ticker service
-| quarkus.smallrye-openapi.info-version | Quartz - info version : https://quarkus.io/version/3.2/guides/all-config#quarkus-smallrye-openapi_quarkus.smallrye-openapi.info-version[Link] | - | ${quarkus.application.version}
+| quarkus.smallrye-openapi.info-title | Openapi - info title : https://quarkus.io/version/3.15/guides/all-config#quarkus-smallrye-openapi_quarkus.smallrye-openapi.info-title[Link] | - | Ticker service
+| quarkus.smallrye-openapi.info-version | Quartz - info version : https://quarkus.io/version/3.15/guides/all-config#quarkus-smallrye-openapi_quarkus.smallrye-openapi.info-version[Link] | - | ${quarkus.application.version}
 
-| quarkus.smallrye-openapi.info-description | Quartz - info version : https://quarkus.io/version/3.2/guides/all-config#quarkus-smallrye-openapi_quarkus.smallrye-openapi.info-description[Link] | - |[source,html]
+| quarkus.smallrye-openapi.info-description | Quartz - info version : https://quarkus.io/version/3.15/guides/all-config#quarkus-smallrye-openapi_quarkus.smallrye-openapi.info-description[Link] | - |[source,html]
 ----
 REST endpoints for operations. <br/>
 General responses in case of error:  <br/>
@@ -54,7 +55,7 @@ General responses in case of error:  <br/>
 * __418__ - Database object not found <br/>
 * __500__ - Internal Server Error <br/>
 ----
-| quarkus.swagger-ui.enable | Enable swagger ui: https://quarkus.io/version/3.2/guides/all-config#quarkus-swagger-ui_quarkus.swagger-ui.enable[Link] | - | false
+| quarkus.swagger-ui.enable | Enable swagger ui: https://quarkus.io/version/3.15/guides/all-config#quarkus-swagger-ui_quarkus.swagger-ui.enable[Link] | - | false
 
 |===
 
