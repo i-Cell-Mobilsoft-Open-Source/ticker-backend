@@ -12,7 +12,7 @@ quarkus:
   arc:
     #    remove-unused-beans: false
     unremovable-types:
-      # producer: https://github.com/quarkusio/quarkus/blob/3.2.5.Final/extensions/quartz/runtime/src/main/java/io/quarkus/quartz/runtime/QuartzSchedulerImpl.java#L284
+      # producer: https://github.com/quarkusio/quarkus/blob/3.15.3/extensions/quartz/runtime/src/main/java/io/quarkus/quartz/runtime/QuartzSchedulerImpl.java#L339
       - org.quartz.Scheduler
       # producer: hu.icellmobilsoft.ticker.quartz.service.timer.config.TimerConfigImpl
       - hu.icellmobilsoft.ticker.quartz.service.timer.config.ITimerConfig

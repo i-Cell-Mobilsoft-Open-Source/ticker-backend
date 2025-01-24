@@ -31,11 +31,13 @@ services:
     volumes:
       - '../config/jaeger/sampling_strategies.json:/etc/jaeger/sampling_strategies.json'
     ports:
-      - '6831:6831/udp'
-      - '16686:16686'
-      - '14268:14268'
-      - '5778:5778'
-
+      - '6831:6831/udp' # Agent
+      - '16686:16686' # UI
+      - '14268:14268' # HTTP collector
+      - '5778:5778' # Agent configuration
+      - '4317:4317' # OTLP collector
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
     deploy:
       resources:
         limits:

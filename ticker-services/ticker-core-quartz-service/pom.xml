@@ -18,6 +18,10 @@
             <groupId>hu.icellmobilsoft.coffee</groupId>
             <artifactId>coffee-module-configdoc</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.opentelemetry</groupId>
+            <artifactId>opentelemetry-exporter-jaeger</artifactId>
+        </dependency>
 
         <!-- Test -->
         <dependency>
