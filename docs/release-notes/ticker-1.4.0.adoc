@@ -39,3 +39,11 @@ A változások visszafelé kompatibilisek nem igényel migrációt.
 ** `quarkus.package.add-runner-suffix` -> `quarkus.package.jar.add-runner-suffix`
 ** `quarkus.package.type` -> `quarkus.package.jar.type`
 ** bővebben: https://quarkus.io/version/3.15/guides/all-config
+
+== Hibajavítások
+
+=== `docker/bake-action` verzió emelés: `v4.3.0` -> `v5`
+
+==== Migráció
+
+A változások visszafelé kompatibilisek nem igényel migrációt. Az alkalmazás működését nem érinti, csak a GitHub-on futó docker-deploy workflow-t.
