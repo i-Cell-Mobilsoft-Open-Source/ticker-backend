@@ -71,11 +71,11 @@ jobs:
 
       # https://github.com/docker/bake-action
       - name: docker buildx bake services
-        uses: docker/bake-action@v4.3.0
+        uses: docker/bake-action@v5
         with:
+          workdir: etc/release
           set: |
             *.platform=${{ env.DOCKER_BAKE_PLATFORM }}
           push: true
-          workdir: etc/release
           files: docker-compose.yml
           targets: ticker-core-quartz-service-release
