@@ -1,4 +1,6 @@
-= Hasznos parancsok és elérések
+= Kiegészítő információk
+
+== Hasznos parancsok és elérések
 Fejlesztés céljából használt parancsok,
 melyek a fejlesztői környezetek felépítésére és indítására szolgálnak.
 
@@ -16,7 +18,7 @@ A projekt tartalmaz egy sampler service-t ami megmutatja a modul használatát. 
 Tehát nincs semmi külső függősége.
 ====
 
-== ticker-core-quartz-service Server indítása különböző módokon
+=== ticker-core-quartz-service Server indítása különböző módokon
 
 .IDE included Quarkus run config
 ----
@@ -40,3 +42,7 @@ docker-compose -f <PROJECT_PATH>/ticker-backend/etc/docker-compose/docker-compos
 
 <1> azért szükséges hogy a jar ami a docker image-be kerül előálljon.
 <2> docker compose parancs a projekt root-jában kiadva indítja a docker-compose buildet (force recreate paraméterrel kierőszakolva az image újrabuildelését, ha lenne), és a felfutást (up)
+
+NOTE: A Quarkus már *build-time* végzi el a beanek feldolgozását és optimalizálását, szemben a hagyományos futásidejű dependency injection modellekkel. Ennek köszönhetően: Csak a ténylegesen használt osztályok kerülnek be a végső alkalmazásba, míg a feleslegesek automatikusan eltávolításra kerülnek.
+
+NOTE: MP Rest Client csak *build-time* konfigurálhatóak, futásidőben nem lehet őket dinamikusan regisztrálni vagy injektálni ezért build-time lehet egy `Ticker core` modullal összecsomagolni.

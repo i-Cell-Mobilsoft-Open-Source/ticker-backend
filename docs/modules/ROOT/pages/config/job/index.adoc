@@ -1,0 +1,143 @@
+= Jobok konfigurációja
+
+A futtatandó jobok a `application.yml` fájlban vannak konfigurálva.
+
+[IMPORTANT]
+====
+Alap konfigurációk `microprofile-config.yml` szinten vannak konfigurálva a `ticker-core-quartz` dependencyben, ezért az implementáló projekten ezt a file-t ne írják felül
+====
+
+.application.yml - Quarkus rest clientek megadása
+[source,yml]
+----
+quarkus:
+    rest-client:
+        ITickerTestRestRegisteredClient: <1>
+            url: http://localhost:8080 <2>
+            scope: jakarta.enterprise.context.ApplicationScoped <3>
+            read-timeout: 5000 <4>
+            connect-timeout: 5000 <5>
+----
+
+NOTE: Általános megoldása a Quarkusnak, hogy az alkalmazásban használandó rest clientek definíciói így adhatók meg.
+
+A példában a legalapvetőbb configok vannak:
+
+<1> A quarkus.rest-client config alatt a rest client interface azonosítóját kell megadni, ami maga az interface package-gel együtt, vagy ha `@RegisterRestClient` annotációban a configKey meg van adva, akkor az alapján kell hivatkozni itt rá.
+<2> Az baseUri megadásának helye
+<3> az injectelt RestClient interface scope-jának meghatározása.
+Javasolt ApplicationScoped-ot használni, így sok problémát el lehet kerülni (rest client lezárás, memória veszteség stb.), figyelni kell arra, hogy ne próbáljuk a bean-t megsemmisíteni ha több job is használja az interfacet, mert hibához vezet.
+A thread-pool növelése ajánlott ha sok job kell ugyanazon a rest kliensen végig fusson.
+<4> Definiálni lehet válaszra várakozási timeoutot
+<5> Definiálni lehet kapcsolódási idő timeoutot
+
+A 3-es pontban említett thead-pool növeléséhez a `DefaultRestClientBuilderListener` osztályt kell örökölni és felülírni az `onNewBuilder` metódusát amiben tudjuk állítani a thread-pool-t illetve a max-pooled-per-route paramétereket:
+
+[source,java]
+----
+    @Override
+    public void onNewBuilder(RestClientBuilder builder) {
+        super.onNewBuilder(builder);
+        builder.property("resteasy.connectionPoolSize",75);
+        builder.property("resteasy.maxPooledPerRoute",50);
+----
+
+További lehetőségek miatt lásd: https://download.eclipse.org/microprofile/microprofile-rest-client-3.0/microprofile-rest-client-spec-3.0.html
+
+.application.yml - Jobok listájának definiálása
+[source,yml]
+----
+ticker:
+    timer:
+        activeJobs:
+            - TEST_REST
+            - TEST_REST_2
+            - ..
+----
+
+== Microprofile Rest alapú job használata
+
+A job lehetővé teszi http hívások kezdeményezését mp rest client segítségével.
+
+A következő példa bemutatja a használatot:
+
+.application.yml
+[source,yaml]
+----
+ticker:
+    timer:
+        activeJobs:
+            - TEST_REST <1>
+        job:
+            TEST_REST: <2>
+                code: REST_QUARTZ_TEST <3>
+                cron: "*/10 * * ? * *" <4>
+                actionClass: hu.icellmobilsoft.ticker.quartz.service.timer.job.mprestclient.MicroprofileRestClientJob <5>
+                config:
+                    mpRestClientClass: hu.icellmobilsoft.ticker.sample.service.rest.test.api.ITickerTestRestRegisteredClient <6>
+                    method: getTest(java.lang.String,java.lang.Integer,java.lang.Long,java.lang.Boolean,java.time.OffsetDateTime) <7>
+                    parameters: <8>
+                        - config
+                        - 50
+                        - 30
+                        - true
+                        - 2023-06-07T13:45:27.893013372Z
+----
+
+<1> - a ticker.timer.activeJobs alatt lehet definiálni mely job legyen aktív
+<2> - a ticker.time.job alatt definiálhatók a jobok, amelyekre az első pontban van hivatkozás
+<3> - A code segítségével lehet a logokban keresni az adott jobot.
+Health-ben is <code>-Job néven található meg, és a logokba is pl.: `<<< End quartz job type [REST_QUARTZ_TEST job]`
+<4> - Cron beállítás
+<5> - Action osztály, ami definiálja a job folyamatát.
+<6> - Az action configja, ahol a mpRestClientClass adható meg ami a rest client interface adható meg.
+<7> - Az action configja, ahol a method adható meg a rest client interface-en belül
+<8> - Az action configja, ahol a parameterek adható meg a metódus híváshoz.
+Bármelyik lista elem definiálható static metódus hívás is definiálható a { kezdettel és } befejezéssel.
+
+== Http hívás alapú job használata [[http_client_job]]
+
+A job lehetővé teszi a legalapvetőbb http hívások definiálását.
+Az egyetlen megoldanó feladat ha egyedi body kialakítás szükséges például egy POST híváshoz, amit az eddigi metódus definiálással megoldható.
+
+A következő példa bemutatja a használatot:
+
+.application.yml
+[source,yaml]
+----
+ticker:
+    timer:
+        activeJobs:
+            - TEST_APACHE_HTTP_CLIENT <1>
+        job:
+            TEST_APACHE_HTTP_CLIENT: <2>
+                code: TEST_APACHE_HTTP_CLIENT <3>
+                cron: "*/1 * * ? * *" <4>
+                actionClass: hu.icellmobilsoft.ticker.quartz.service.timer.job.httpclient.HttpClientJob <5>
+                config:
+                    baseUrl: http://localhost:8080/test/ticker <6>
+                    method: Get <7>
+                    body: "&{hu.icellmobilsoft.ticker.common.util.version.BaseRequestUtil.generate}" # static method call <8>
+                    headers:
+                        Content-Type: "application/xml"
+                        Accept: "application/json"
+                    queryParams:
+                       testString: value
+                       testInteger: 1000
+                       testLong: 50000
+                       testBoolean: true
+                       testOffsetDateTime: 2023-06-07T13:45:27.893013372Z
+----
+
+<1> - a ticker.timer.activeJobs alatt lehet definiálni mely job legyen aktív
+<2> - a ticker.time.job alatt definiálhatók a jobok, amelyekre az első pontban van hivatkozás
+<3> - A code segítségével lehet a logokban keresni az adott jobot.
+Healt-ben is <code>-Job néven található meg, és a logokba is pl.: `<<< End quartz job type [TEST_APACHE_HTTP_CLIENT job]`
+<4> - Cron beállítás
+<5> - Action osztály, ami definiálja a job folyamatát, a példában lehet a Http hívás alapú jobot használni.
+<6> - Az action configja, ahol a baseUrl adható meg a http híváshoz
+<7> - Az action configja, ahol a method adható meg a http híváshoz
+<8> - Az action configja, ahol a body adható meg a http híváshoz.
+A body-ba static metódus hívás is definiálható a &{ kezdettel és } befejezéssel.
+<9> - Az action configja, ahol a headerök adhatók meg a http híváshoz
+<10> - Az action configja, ahol a queryParams adható meg a http híváshoz
