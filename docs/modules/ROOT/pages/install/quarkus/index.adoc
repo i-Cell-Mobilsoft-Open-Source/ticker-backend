@@ -1,6 +1,4 @@
-= Projekt configurációs beállításainak lehetőségei  [[project_configs]]
-
-== Quarkus alapú configok
+= Quarkus alapú configok
 
 Az alkalmazás mivel Quarkus alapú, így a quarkus alap beállításai használhatóak benne.
 
@@ -57,29 +55,4 @@ General responses in case of error:  <br/>
 ----
 | quarkus.swagger-ui.enable | Enable swagger ui: https://quarkus.io/version/3.15/guides/all-config#quarkus-swagger-ui_quarkus.swagger-ui.enable[Link] | - | false
 
-|===
-
-== Coffee alapú configok
-
-Az alkalmazás ezen felül a coffee toolset használata miatt, további konfigurációs lehetőségeket tartalmaz.
-
-
-[cols="a,a,a,a"]
-|===
-| Coffee config key | Description | Env variable | Default value
-
-| coffee.app.name | Coffee app name in logs | - | ${quarkus.application.name}
-| coffee.config.resource.bundles | Resource bundles' config for i18n | - | i18n.common-messages,i18n.messages
-| coffee.config.xml.catalog.path | Catalog path of Super catalog.xml | - |xsd/hu/icellmobilsoft/ticker/dto/super.catalog.xml
-|===
-
-== Microprofile Openapi configok
-
-Ezen kívül coffeehoz kapcsolódóan, tartalmaz egy microprofile openapi filter configurációt is
-
-[cols="a,a,a,a"]
-|===
-| MP Openapi config key | Description | Env variable | Default value
-
-| mp.openapi.filter | Microprofile openapi filter class with package | - | hu.icellmobilsoft.ticker.common.rest.filter.OpenAPIFilter
 |===
