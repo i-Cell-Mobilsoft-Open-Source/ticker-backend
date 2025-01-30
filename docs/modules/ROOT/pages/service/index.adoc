@@ -39,5 +39,4 @@ Ezek után, az alkalmazás indulásakor elindul a `SchedulerController`-ben defi
 Ekkor a `SchedulerController` látni fogja az indexelt interfaceket, és a megadott yml config szerint indítja őket.
 
 
-// include::core-quartz/index.adoc[leveloffset=+1]
-// include::sampler/index.adoc[leveloffset=+1]
+include::sampler/index.adoc[leveloffset=+1]
