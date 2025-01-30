@@ -26,7 +26,7 @@ A projekt célja, egy moduláris megoldás adása arra, hogy cron időzítéssel
 :architecture: architecture.png
 image::{architecture}[Architektúra,link="{imagesdir}/{architecture}",window=_blank]
 
-.Config backend {release_version}
+.Ticker backend {release_version}
 [options="header"]
 |===
 |Típus| Modul | Verzió|maven
