@@ -1,0 +1,21 @@
+= Helm config tudnivalók
+
+A quarkus támogatja a dev és test profilokat, és engedélye más profilok létrehozását is, viszont minden környezetben más és más értékei lehetnek egy-egy konfigurációnak, mint pl egy url.
+
+Emiatt Helm config szintjén kell beállítani egyedi microprofile-config.yml fájlt, ami felülírja az alkalmazásban lévő configurációkat.
+
+A quarkus ad lehetőséget környezeti változón keresztüli config source beállításra:
+https://quarkus.io/guides/config-reference#quarkus-config-config_quarkus.config.locations
+
+Tehát helm values esetén a következőket kell beállítani:
+
+.values.yaml
+[source,yaml]
+----
+configMountPath: /deployments/app/config
+...
+extraEnv:
+- name: QUARKUS_CONFIG_LOCATIONS
+value: {{ .Values.configMountPath }}/microprofile-config.yml
+
+----

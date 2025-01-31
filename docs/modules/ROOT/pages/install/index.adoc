@@ -1,0 +1,6 @@
+= Telepítés, üzembe helyezés
+
+== Általános Service beállítások
+
+include::core-quartz/index.adoc[leveloffset=+1]
+include::helm/index.adoc[leveloffset=+1]

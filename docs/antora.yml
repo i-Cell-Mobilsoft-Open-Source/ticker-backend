@@ -1,0 +1,6 @@
+name: ticker-backend
+title: Ticker Backend
+version: true
+start_page: general/index.adoc
+nav:
+  - modules/ROOT/nav.adoc

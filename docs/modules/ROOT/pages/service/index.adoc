@@ -1,0 +1,42 @@
+:toc: left
+:toclevels: 3
+:sectnums:
+:sectnumlevels: 3
+
+= Backend
+
+A Ticker projekt két részre tagolható. Az egyik egy sampler és a hozzá tartozó testsuite alprojekt, a másik része pedig a ticker-core-quartz modul.
+
+== Szolgáltatás
+
+A sampler bemutatja, hogyan is kell használni a modult-t, hogy egy olyan servicet kapjunk ahol csak az *apit* kell dependency szinten összefűzni a *ticker-core-quartz modullal*.
+
+Első lépés a ticker-core-quartz modul dependency-k közt való használata
+
+[source,xml]
+----
+<dependency>
+	<groupId>hu.icellmobilsoft.ticker</groupId>
+	<artifactId>ticker-core-quartz</artifactId>
+</dependency>
+----
+
+Másodsorban azon api dependency használata, melyben az interface-ek vannak, amit a modul meg tud majd hívni:
+
+.Példa api dependency
+[source,xml]
+----
+<dependency>
+    <groupId>hu.icellmobilsoft.sampler.api</groupId>
+    <artifactId>api</artifactId>
+</dependency>
+----
+
+IMPORTANT: Fontos, hogy mivel ez egy quarkus-on alapuló modul, így az implementáló modulnak is azonos verziójú quarkust használó alkalmazásnak kell lennie.
+
+Ezek után, az alkalmazás indulásakor elindul a `SchedulerController`-ben definiált event.
+
+Ekkor a `SchedulerController` látni fogja az indexelt interfaceket, és a megadott yml config szerint indítja őket.
+
+
+include::sampler/index.adoc[leveloffset=+1]

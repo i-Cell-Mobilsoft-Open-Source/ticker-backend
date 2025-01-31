@@ -1,0 +1,14 @@
+= Konfiguráció [[project_configs]]
+
+== Backend
+
+A modul konfigurációja application.yml-on keresztül történik, ami által lehetséges a szükséges értékek megadása quarkus alapon.
+
+Alap konfiguráció a application.yml-on keresztül kerül megadásra, melyet bővíteni lehet, és környezetenként változhat, de nem kell minden értéket megadni, csak ami változik az alap beállításokhoz képest.
+
+*Lehetséges módok prioritási sorrendben:*
+
+* Rendszer változók
+* Környezeti változók
+
+include::job/index.adoc[leveloffset=+1]
