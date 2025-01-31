@@ -1,12 +1,4 @@
-:toc: left
-:toclevels: 4
-:sectnums:
-:sectnumlevels: 4
-:source-highlighter: rouge
-:rouge-style: thankful_eyes
-:icons: font
-:table-stripes: even
-ifndef::imagesdir[:imagesdir: ../../images]
+ifndef::imagesdir[:imagesdir: ../images]
 
 = Általános
 
