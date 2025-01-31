@@ -11,12 +11,12 @@ Basic configurations are set at the `microprofile-config.yml` level in the `tick
 [source,yml]
 ----
 quarkus:
- rest-client:
- ITickerTestRestRegisteredClient: <1>
- url: http://localhost:8080 <2>
- scope: jakarta.enterprise.context.ApplicationScoped <3>
- read-timeout: 5000 <4>
- connect-timeout: 5000 <5>
+    rest-client:
+        ITickerTestRestRegisteredClient: <1>
+            url: http://localhost:8080 <2>
+            scope: jakarta.enterprise.context.ApplicationScoped <3>
+            read-timeout: 5000 <4>
+            connect-timeout: 5000 <5>
 ----
 
 NOTE: It is a general solution in Quarkus that the definitions of REST clients to be used in the application can be specified in this way.
@@ -33,11 +33,11 @@ For increasing the thread pool mentioned in point 3, the `DefaultRestClientBuild
 
 [source,java]
 ----
- @Override
- public void onNewBuilder(RestClientBuilder builder) {
- super.onNewBuilder(builder);
- builder.property("resteasy.connectionPoolSize",75);
- builder.property("resteasy.maxPooledPerRoute",50);
+    @Override
+    public void onNewBuilder(RestClientBuilder builder) {
+        super.onNewBuilder(builder);
+        builder.property("resteasy.connectionPoolSize",75);
+        builder.property("resteasy.maxPooledPerRoute",50);
 ----
 
 For further options, see: https://download.eclipse.org/microprofile/microprofile-rest-client-3.0/microprofile-rest-client-spec-3.0.html
@@ -46,11 +46,11 @@ For further options, see: https://download.eclipse.org/microprofile/microprofile
 [source,yml]
 ----
 ticker:
- timer:
- activeJobs:
- - TEST_REST
- - TEST_REST_2
- - ..
+    timer:
+        activeJobs:
+            - TEST_REST
+            - TEST_REST_2
+            - ..
 ----
 
 == Using Microprofile Rest-based Job
@@ -63,23 +63,23 @@ The following example demonstrates its use:
 [source,yaml]
 ----
 ticker:
- timer:
- activeJobs:
- - TEST_REST <1>
- job:
- TEST_REST: <2>
- code: REST_QUARTZ_TEST <3>
- cron: "*/10 antora.yml gpt.sh modules antora.yml gpt.sh modules ? antora.yml gpt.sh modules *" <4>
- actionClass: hu.icellmobilsoft.ticker.quartz.service.timer.job.mprestclient.MicroprofileRestClientJob <5>
- config:
- mpRestClientClass: hu.icellmobilsoft.ticker.sample.service.rest.test.api.ITickerTestRestRegisteredClient <6>
- method: getTest(java.lang.String,java.lang.Integer,java.lang.Long,java.lang.Boolean,java.time.OffsetDateTime) <7>
- parameters: <8>
- - config
- - 50
- - 30
- - true
- - 2023-06-07T13:45:27.893013372Z
+    timer:
+        activeJobs:
+            - TEST_REST <1>
+        job:
+            TEST_REST: <2>
+                code: REST_QUARTZ_TEST <3>
+                cron: "*/10 antora.yml gpt.sh modules antora.yml gpt.sh modules ? antora.yml gpt.sh modules *" <4>
+                actionClass: hu.icellmobilsoft.ticker.quartz.service.timer.job.mprestclient.MicroprofileRestClientJob <5>
+                config:
+                    mpRestClientClass: hu.icellmobilsoft.ticker.sample.service.rest.test.api.ITickerTestRestRegisteredClient <6>
+                    method: getTest(java.lang.String,java.lang.Integer,java.lang.Long,java.lang.Boolean,java.time.OffsetDateTime) <7>
+                    parameters: <8>
+                        - config
+                        - 50
+                        - 30
+                        - true
+                        - 2023-06-07T13:45:27.893013372Z
 ----
 
 <1> - under ticker.timer.activeJobs, you can define which job should be active
@@ -102,27 +102,27 @@ The following example demonstrates its use:
 [source,yaml]
 ----
 ticker:
- timer:
- activeJobs:
- - TEST_APACHE_HTTP_CLIENT <1>
- job:
- TEST_APACHE_HTTP_CLIENT: <2>
- code: TEST_APACHE_HTTP_CLIENT <3>
- cron: "*/1 antora.yml gpt.sh modules antora.yml gpt.sh modules ? antora.yml gpt.sh modules *" <4>
- actionClass: hu.icellmobilsoft.ticker.quartz.service.timer.job.httpclient.HttpClientJob <5>
- config:
- baseUrl: http://localhost:8080/test/ticker <6>
- method: Get <7>
- body: "&{hu.icellmobilsoft.ticker.common.util.version.BaseRequestUtil.generate}" # static method call <8>
- headers:
- Content-Type: "application/xml"
- Accept: "application/json"
- queryParams:
- testString: value
- testInteger: 1000
- testLong: 50000
- testBoolean: true
- testOffsetDateTime: 2023-06-07T13:45:27.893013372Z
+    timer:
+        activeJobs:
+            - TEST_APACHE_HTTP_CLIENT <1>
+        job:
+            TEST_APACHE_HTTP_CLIENT: <2>
+                code: TEST_APACHE_HTTP_CLIENT <3>
+                cron: "*/1 * * ? * *" <4>
+                actionClass: hu.icellmobilsoft.ticker.quartz.service.timer.job.httpclient.HttpClientJob <5>
+            config:
+                baseUrl: http://localhost:8080/test/ticker <6>
+                method: Get <7>
+                body: "&{hu.icellmobilsoft.ticker.common.util.version.BaseRequestUtil.generate}" # static method call <8>
+                headers:
+                    Content-Type: "application/xml"
+                    Accept: "application/json"
+                queryParams:
+                    testString: value
+                    testInteger: 1000
+                    testLong: 50000
+                    testBoolean: true
+                    testOffsetDateTime: 2023-06-07T13:45:27.893013372Z
 ----
 
 <1> - under ticker.timer.activeJobs, you can define which job should be active
