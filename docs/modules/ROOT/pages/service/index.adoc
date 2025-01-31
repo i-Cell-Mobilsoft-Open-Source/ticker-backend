@@ -5,25 +5,25 @@
 
 = Backend
 
-A Ticker projekt két részre tagolható. Az egyik egy sampler és a hozzá tartozó testsuite alprojekt, a másik része pedig a ticker-core-quartz modul.
+The Ticker project can be divided into two parts. One is a sampler and its associated testsuite subproject, and the other part is the ticker-core-quartz module.
 
-== Szolgáltatás
+== Service
 
-A sampler bemutatja, hogyan is kell használni a modult-t, hogy egy olyan servicet kapjunk ahol csak az *apit* kell dependency szinten összefűzni a *ticker-core-quartz modullal*.
+The sampler demonstrates how to use the module to create a service where you only need to link the *apit* at the dependency level with the *ticker-core-quartz module*.
 
-Első lépés a ticker-core-quartz modul dependency-k közt való használata
+The first step is to include the ticker-core-quartz module in the dependencies.
 
 [source,xml]
 ----
 <dependency>
-	<groupId>hu.icellmobilsoft.ticker</groupId>
-	<artifactId>ticker-core-quartz</artifactId>
+    <groupId>hu.icellmobilsoft.ticker</groupId>
+    <artifactId>ticker-core-quartz</artifactId>
 </dependency>
 ----
 
-Másodsorban azon api dependency használata, melyben az interface-ek vannak, amit a modul meg tud majd hívni:
+Secondly, use the API dependency containing the interfaces that the module will call:
 
-.Példa api dependency
+.Example API dependency
 [source,xml]
 ----
 <dependency>
@@ -32,11 +32,11 @@ Másodsorban azon api dependency használata, melyben az interface-ek vannak, am
 </dependency>
 ----
 
-IMPORTANT: Fontos, hogy mivel ez egy quarkus-on alapuló modul, így az implementáló modulnak is azonos verziójú quarkust használó alkalmazásnak kell lennie.
+IMPORTANT: It is important that since this is a Quarkus-based module, the implementing module must also use an application with the same version of Quarkus.
 
-Ezek után, az alkalmazás indulásakor elindul a `SchedulerController`-ben definiált event.
+After that, when the application starts, the event defined in the `SchedulerController` will be triggered.
 
-Ekkor a `SchedulerController` látni fogja az indexelt interfaceket, és a megadott yml config szerint indítja őket.
+At this point, the `SchedulerController` will see the indexed interfaces and will start them according to the provided yml config.
 
 
 include::sampler/index.adoc[leveloffset=+1]

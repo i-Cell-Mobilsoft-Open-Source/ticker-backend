@@ -1,14 +1,14 @@
-= Konfiguráció [[project_configs]]
+= Configuration [[project_configs]]
 
 == Backend
 
-A modul konfigurációja application.yml-on keresztül történik, ami által lehetséges a szükséges értékek megadása quarkus alapon.
+The module configuration is done through application.yml, which allows specifying the necessary values based on Quarkus.
 
-Alap konfiguráció a application.yml-on keresztül kerül megadásra, melyet bővíteni lehet, és környezetenként változhat, de nem kell minden értéket megadni, csak ami változik az alap beállításokhoz képest.
+The basic configuration is provided through application.yml, which can be expanded and may vary by environment, but you only need to specify values that differ from the default settings.
 
-*Lehetséges módok prioritási sorrendben:*
+*Possible methods in order of priority:*
 
-* Rendszer változók
-* Környezeti változók
+* System variables
+* Environment variables
 
 include::job/index.adoc[leveloffset=+1]

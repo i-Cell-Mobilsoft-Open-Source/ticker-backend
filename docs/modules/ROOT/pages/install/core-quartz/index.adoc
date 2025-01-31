@@ -1,11 +1,11 @@
-= Ticker core quartz service konfiguráció
+= Ticker core quartz service configuration
 
-A Ticker Service szolgáltatást felhasználni kívánó projekt(ek) környezeteiben elérhető kell legyen.
-Ehhez a service egy-egy példánya - infrastrukturális szükségleteivel együtt - minden egyes (fejlesztői/teszt/éles) környezetre telepítendő és konfigurálandó.
+The Ticker Service must be accessible in the environments of the project(s) that intend to use it.
+To achieve this, each instance of the service - along with its infrastructural requirements - must be deployed and configured for each (development/test/production) environment.
 
-== Service Konfiguráció
+== Service Configuration
 
-.Alkalmazás
+.Application
 [source,properties]
 ----
 COFFEE_APP_NAME=${quarkus.application.name}
@@ -16,42 +16,42 @@ CONSOLE_LOGGING_ENABLED=true
 
 === Kubernetes deployment
 
-* Ajánlott konfiguráció
+* Recommended configuration
 
 [options="header",cols="1,1,1"]
 |===
 |Parameter |Value |Description
-|TICKER_LOG_CONSOLE_ENABLE| true | konzolra logolás tiltása, default : true
-|TICKER_LOG_FILE_ENABLE| false | fájlba logolás tiltása, default: false
-|TICKER_LOGSTASH_K8S_NAMESPACE | ticker-core-quartz-service | K8S_NAMESPACE beállítása, default unknown
-|CFG_LOGSTASH_MODULE_VERSION | | moduleVersion kulcs beállítása, default unknown
+|TICKER_LOG_CONSOLE_ENABLE| true | disable logging to console, default: true
+|TICKER_LOG_FILE_ENABLE| false | disable logging to file, default: false
+|TICKER_LOGSTASH_K8S_NAMESPACE | ticker-core-quartz-service | set K8S_NAMESPACE, default unknown
+|CFG_LOGSTASH_MODULE_VERSION | | set moduleVersion key, default unknown
 |TICKER_JAEGER_AGENT_HOST_PORT | jaeger:6831 | jaeger agent host, default localhost
-|TICKER_JAEGER_SERVICE_NAME | ticker-core-quartz-service | Service name ami a Jaeger felületén is látható (alapértelmezetten ROOT.war)
+|TICKER_JAEGER_SERVICE_NAME | ticker-core-quartz-service | Service name visible on the Jaeger interface (default ROOT.war)
 |===
 
 include::../quarkus/index.adoc[leveloffset=+1]
 
 === Observability
 
-==== Metrikák
+==== Metrics
 
-A `hu.icellmobilsoft.ticker.quartz.service.quartz.util.QuartzJobUtil` osztály szolgáltatja a Quartz Job-okról a metrikákat. Az `org.quartz.Scheduler`-be az `org.quartz.ListenerManager` interface-en keresztül adjuk hozzá a saját `hu.icellmobilsoft.ticker.quartz.service.quartz.health.metric.MetricJobListener`-ünket ami az `org.quartz.JobListener`-t implementálja.
+The `hu.icellmobilsoft.ticker.quartz.service.quartz.util.QuartzJobUtil` class provides metrics about Quartz Jobs. We add our own `hu.icellmobilsoft.ticker.quartz.service.quartz.health.metric.MetricJobListener`, which implements `org.quartz.JobListener`, to the `org.quartz.Scheduler` via the `org.quartz.ListenerManager` interface.
 
-Jelenleg az következő Quartz Job metrikák érhetőek el:
+Currently, the following Quartz Job metrics are available:
 
 * Quartz job prev fire time
-** Az előző Job futás időpontja
-** kulcs: `quartz_job_prev_fire_time`
+** The time of the previous Job execution
+** key: `quartz_job_prev_fire_time`
 * Quartz job next fire time
-** A következő Job futás időpontja
-** kulcs: `quartz_job_next_fire_time`
+** The time of the next Job execution
+** key: `quartz_job_next_fire_time`
 * Quartz job run time
-** A legutóbbi Job futás ideje
-** kulcs: `quartz_job_run_time`
+** The duration of the most recent Job execution
+** key: `quartz_job_run_time`
 
-A metrikákat az alkalmazásszerver a `<host:port>/q/metrics` végponton szolgáltatja `application_` prefix-szel ellátva.
+The application server provides metrics at the `<host:port>/q/metrics` endpoint with the `application_` prefix.
 
-.példa
+.example
 ----
 application_quartz_job_prev_fire_time{configKey="REST_QUARTZ_TEST-Job",quantile="0.5"} 1.66921282E12
 application_quartz_job_next_fire_time{configKey="REST_QUARTZ_TEST-Job",quantile="0.5"} 1.66921283E12
@@ -61,7 +61,7 @@ application_quartz_job_run_time{configKey="REST_QUARTZ_TEST-Job",quantile="0.5"}
 
 ==== Health - startup/liveness/readiness
 
-A service támogatja a k8s probe-ok használatát.
+The service supports the use of k8s probes.
 
 * started
 http://localhost:9000/q/health/started
