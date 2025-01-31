@@ -6,6 +6,7 @@
 :rouge-style: thankful_eyes
 :icons: font
 :table-stripes: even
+ifndef::imagesdir[:imagesdir: ./images]
 
 = Ticker Modul Dokumentáció
 
