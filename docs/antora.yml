@@ -1,7 +1,6 @@
 name: ticker-backend
 title: Ticker Backend
-version:
-  antora/(*): $1
+version: true
 start_page: general/index.adoc
 nav:
   - modules/ROOT/nav.adoc
