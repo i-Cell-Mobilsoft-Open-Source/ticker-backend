@@ -1,3 +1,12 @@
+:toc: left
+:toclevels: 4
+:sectnums:
+:sectnumlevels: 4
+:source-highlighter: rouge
+:rouge-style: thankful_eyes
+:icons: font
+:table-stripes: even
+
 = Ticker Modul Dokumentáció
 
 include::general/index.adoc[leveloffset=+1]
