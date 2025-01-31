@@ -1,6 +1,7 @@
 = ticker 1.4.0 [[ticker_1_4_0]]
 
 == Changes
+* GH documents translated to english.
 
 === `coffee` version upgrade `2.6.0` -> `2.9.0`:
 
