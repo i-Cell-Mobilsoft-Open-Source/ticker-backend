@@ -1,0 +1,8 @@
+= Ticker Modul Dokumentáció
+
+include::general/index.adoc[leveloffset=+1]
+include::service/index.adoc[leveloffset=+1]
+include::config/index.adoc[leveloffset=+1]
+include::install/index.adoc[leveloffset=+1]
+include::additional/index.adoc[leveloffset=+1]
+include::release-notes/index.adoc[leveloffset=+1]
