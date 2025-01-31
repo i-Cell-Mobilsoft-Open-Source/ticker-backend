@@ -8,7 +8,7 @@
 :table-stripes: even
 ifndef::imagesdir[:imagesdir: ./images]
 
-= Ticker Modul Dokumentáció
+= Ticker Module Documentation
 
 include::general/index.adoc[leveloffset=+1]
 include::service/index.adoc[leveloffset=+1]

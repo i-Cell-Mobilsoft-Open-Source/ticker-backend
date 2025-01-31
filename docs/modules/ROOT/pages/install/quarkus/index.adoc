@@ -1,12 +1,12 @@
-= Quarkus alapú configok
+= Quarkus based configs
 
-Az alkalmazás mivel Quarkus alapú, így a quarkus alap beállításai használhatóak benne.
+Since the application is Quarkus based, the default Quarkus settings can be used in it.
 
-A leírás itt található meg: https://quarkus.io/version/3.15/guides/all-config
+The description can be found here: https://quarkus.io/version/3.15/guides/all-config
 
-NOTE: A configuráció listából, csak azon elemek aktívak, melyek dependency szinten be vannak téve a projektbe.
+NOTE: From the configuration list, only those elements are active that are included in the project at the dependency level.
 
-Fontosabb elemek, melyek alapból már definiálva vannak a projekttel:
+Important elements that are already defined by default with the project:
 
 
 [cols="a,a,a,a"]
@@ -46,7 +46,7 @@ Fontosabb elemek, melyek alapból már definiálva vannak a projekttel:
 | quarkus.smallrye-openapi.info-description | Quartz - info version : https://quarkus.io/version/3.15/guides/all-config#quarkus-smallrye-openapi_quarkus.smallrye-openapi.info-description[Link] | - |[source,html]
 ----
 REST endpoints for operations. <br/>
-General responses in case of error:  <br/>
+General responses in case of error: <br/>
 * __400__ - Bad Request <br/>
 * __401__ - Unauthorized <br/>
 * __404__ - Not found <br/>

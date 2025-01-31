@@ -1,28 +1,28 @@
-= Kiegészítő információk
+= Additional Information
 
-== Hasznos parancsok és elérések
-Fejlesztés céljából használt parancsok,
-melyek a fejlesztői környezetek felépítésére és indítására szolgálnak.
+== Useful Commands and Accesses
+Commands used for development purposes,
+which are used for setting up and starting developer environments.
 
-Az alkalmazás több féle módon indítható:
+The application can be started in several ways:
 
-* Quarkus dev indítása mavennel
-* Quarkus uber-jar készítése és ezen jar fájl futtatása `java -jar` segítségével
-** Ugyan ez a jar java docker image-be téve és megfuttatva (Dockerfile.uber-jar.jvm használata)
+* Starting Quarkus dev with Maven
+* Creating a Quarkus uber-jar and running this jar file using `java -jar`
+** The same jar placed into a java docker image and run (using Dockerfile.uber-jar.jvm)
 
-Docker image-ek készítésére és futtatására docker-compose van használva.
+Docker-compose is used for creating and running Docker images.
 
 [NOTE]
 ====
-A projekt tartalmaz egy sampler service-t ami megmutatja a modul használatát. Ez a példa képes teljes egészben csak lokális fejlesztői gépen futni.
-Tehát nincs semmi külső függősége.
+The project contains a sampler service that demonstrates the use of the module. This example is capable of running entirely on a local development machine. 
+So there are no external dependencies.
 ====
 
-=== ticker-core-quartz-service Server indítása különböző módokon
+=== Starting ticker-core-quartz-service Server in Different Ways
 
 .IDE included Quarkus run config
 ----
-Több böngésző is nyújt támogatást natívan a quarkussal kapcsolatoban, úgy mint a spring boot projektekhez, hogy felismeri és saját futtatási konfigurációt hoz létre.
+Several IDEs offer native support for Quarkus, as they do for Spring Boot projects, recognizing and creating their own run configuration.
 ----
 
 .Maven quarkus:dev
@@ -30,19 +30,19 @@ Több böngésző is nyújt támogatást natívan a quarkussal kapcsolatoban, ú
 mvn clean compile quarkus:dev
 ----
 
-IMPORTANT: A projekt nem 1 modulból áll, mint ahogy a quarkus elvárná, emiatt kell a compile.
+IMPORTANT: The project consists of more than one module, as expected by Quarkus, therefore compile is necessary.
 
-NOTE: A quarkus maven plugin segítségével dev módban indítható a projekt, így több dev tool is aktiválódik. További információ: https://quarkus.io/guides/dev-mode-differences.
+NOTE: With the help of the Quarkus Maven plugin, the project can be started in dev mode, activating several dev tools. More information: https://quarkus.io/guides/dev-mode-differences.
 
-.Quarkus uber-jar futtatása dockerben
+.Running Quarkus uber-jar in Docker
 ----
 mvn clean install <1>
 docker-compose -f <PROJECT_PATH>/ticker-backend/etc/docker-compose/docker-compose.local.ticker-service.yml up --build --force-recreate <2>
 ----
 
-<1> azért szükséges hogy a jar ami a docker image-be kerül előálljon.
-<2> docker compose parancs a projekt root-jában kiadva indítja a docker-compose buildet (force recreate paraméterrel kierőszakolva az image újrabuildelését, ha lenne), és a felfutást (up)
+<1> is necessary for generating the jar that will be included in the Docker image.
+<2> The docker compose command, issued in the project's root, initiates the docker-compose build (forcing a rebuild of the image if needed with the force recreate parameter), and starts up.
 
-NOTE: A Quarkus már *build-time* végzi el a beanek feldolgozását és optimalizálását, szemben a hagyományos futásidejű dependency injection modellekkel. Ennek köszönhetően: Csak a ténylegesen használt osztályok kerülnek be a végső alkalmazásba, míg a feleslegesek automatikusan eltávolításra kerülnek.
+NOTE: Quarkus processes and optimizes beans at *build-time*, unlike traditional runtime dependency injection models. Thanks to this: Only the actually used classes are included in the final application, while unnecessary ones are automatically removed.
 
-NOTE: MP Rest Client csak *build-time* konfigurálhatóak, futásidőben nem lehet őket dinamikusan regisztrálni vagy injektálni ezért build-time lehet egy `Ticker core` modullal összecsomagolni.
+NOTE: MP Rest Client can only be configured at *build-time*, they cannot be dynamically registered or injected at runtime, therefore at build-time it can be packaged with a `Ticker core` module.

@@ -1,15 +1,16 @@
 = Ticker sampler
 
-.Mock GET Rest végpont
+.Mock GET Rest endpoint
 [source,text]
 ----
 GET /test
 ----
 
-.Mock POST Rest végpont
+.Mock POST Rest endpoint
 [source,text]
 ----
 POST /test
 ----
 
-A két mock endpoint mintának szolgál amivel ki lehet próbálni modult, nincs funkcionalitás mögöttük.
+The two mock endpoints serve as examples to test the module; there is no functionality behind them.
+

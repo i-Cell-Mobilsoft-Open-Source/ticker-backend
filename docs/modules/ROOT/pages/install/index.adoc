@@ -1,6 +1,6 @@
-= Telepítés, üzembe helyezés
+= Installation, Deployment
 
-== Általános Service beállítások
+== General Service Settings
 
 include::core-quartz/index.adoc[leveloffset=+1]
 include::helm/index.adoc[leveloffset=+1]
