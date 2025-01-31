@@ -69,7 +69,7 @@ ticker:
         job:
             TEST_REST: <2>
                 code: REST_QUARTZ_TEST <3>
-                cron: "*/10 antora.yml gpt.sh modules antora.yml gpt.sh modules ? antora.yml gpt.sh modules *" <4>
+                cron: "*/10 * * ? * *" <4>
                 actionClass: hu.icellmobilsoft.ticker.quartz.service.timer.job.mprestclient.MicroprofileRestClientJob <5>
                 config:
                     mpRestClientClass: hu.icellmobilsoft.ticker.sample.service.rest.test.api.ITickerTestRestRegisteredClient <6>
