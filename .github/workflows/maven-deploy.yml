@@ -19,7 +19,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     # run only on main
     if: (github.ref_name == 'main' && contains('["rombow","czenczl","speter555","mate-biro","cserhatit","Adigolyo"]', github.actor))

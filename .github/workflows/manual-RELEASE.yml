@@ -14,7 +14,7 @@ on:
 jobs:
 
   mvn-release:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     # run only on main
     if: (contains('["rombow","czenczl","speter555","mate-biro","cserhatit","Adigolyo"]', github.actor))
 
