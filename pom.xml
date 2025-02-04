@@ -9,7 +9,7 @@
 
     <groupId>hu.icellmobilsoft.ticker</groupId>
     <artifactId>ticker</artifactId>
-    <version>1.4.0</version>
+    <version>1.4.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
@@ -35,7 +35,7 @@
         <connection>scm:git:git@github.com:i-Cell-Mobilsoft-Open-Source/ticker-backend.git</connection>
         <developerConnection>scm:git:git@github.com:i-Cell-Mobilsoft-Open-Source/ticker-backend.git</developerConnection>
         <url>https://github.com/i-Cell-Mobilsoft-Open-Source/ticker-backend</url>
-        <tag>ticker-1.4.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <build>
