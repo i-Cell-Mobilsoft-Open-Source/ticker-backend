@@ -14,11 +14,10 @@ services:
     container_name: ticker-core-quartz-service-dev
     build:
       context: ../../
-      dockerfile: etc/docker-compose/local.Dockerfile
+      dockerfile: etc/docker-compose/local.fast-jar.Dockerfile
       args:
-        ICELL_JAVA_17_JRE_BASE_IMAGE: '${OSS_DOCKER_REPOSITORY}/icellmobilsoft/base-java17jre:${DOCKER_BASE_IMAGE_VERSION}'
-        # opensource-ba ha kimegy ez használható
-        #ICELL_JAVA_17_JRE_BASE_IMAGE: 'eclipse-temurin:17.0.6_10-jre'
+        ICELL_JAVA_JRE_BASE_IMAGE: 'icellmobilsoft/base-java21jre:${DOCKER_BASE_IMAGE_VERSION}'
+        SERVICE: 'ticker-core-quartz-service'
     image: "ticker-core-quartz-service:develop-local-oss"
     environment:
       # With this config, service use application-dev.yml!
@@ -47,4 +46,5 @@ services:
           memory: 512M
 networks:
   default:
+    external: true
     name: ticker-local-network

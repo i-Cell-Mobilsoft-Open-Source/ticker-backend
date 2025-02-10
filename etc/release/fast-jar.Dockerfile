@@ -1,16 +1,16 @@
 # docker-compose adja
-ARG ICELL_JAVA_17_JRE_BASE_IMAGE
+ARG ICELL_JAVA_JRE_BASE_IMAGE
 ################################################################################
 # Default image customization
 ################################################################################
-FROM ${ICELL_JAVA_17_JRE_BASE_IMAGE} as base
+FROM ${ICELL_JAVA_JRE_BASE_IMAGE:-icellmobilsoft/base-java21jre:1.5.0} AS base
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en'
 
 ################################################################################
 # Download .jar
 ################################################################################
-FROM docker.io/icellmobilsoft/builder-nexus-download:1.4.1 as download
+FROM icellmobilsoft/builder-nexus-download:1.5.0 AS download
 
 ARG POM_GROUP_ID
 ARG POM_ARTIFACT_ID
@@ -22,28 +22,33 @@ ENV NEXUS_OBJECT_ARTIFACT_ID=$POM_ARTIFACT_ID
 ENV NEXUS_OBJECT_EXTENSION=$POM_EXTENSION
 ENV NEXUS_OBJECT_VERSION=$POM_VERSION
 
+ENV NEXUS_DOWNLOAD_OUTPUT_FILE_NAME=fastjar.tar.gz
+
 RUN $HOME/script/sonatype-download.sh
 
 ################################################################################
 # Create production image
 ################################################################################
-FROM base as prod
+FROM base AS prod
 
 ARG POM_ARTIFACT_ID
 ARG POM_VERSION
-ARG POM_EXTENSION
-
-ENV JAR_FILE=$POM_ARTIFACT_ID-$POM_VERSION.$POM_EXTENSION
-ENV APP_DIR='quarkus-app'
-ENV JAVA_OPTS="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
 
 LABEL moduleName="$POM_ARTIFACT_ID"
 LABEL moduleVersion="$POM_VERSION"
 
-RUN mkdir $APP_DIR
+# create directories
+RUN mkdir -p $HOME/tmp && mkdir $HOME/deployments
+# copy downlaoded file
+COPY --from=download /home/icellmobilsoft/download/fastjar.tar.gz $HOME/tmp
 
-COPY --from=download --chown=$SYSTEM_USER $HOME/download/$JAR_FILE $HOME/$APP_DIR/$JAR_FILE
+# unzip
+RUN tar --strip-components=1 -xvzf /home/icellmobilsoft/tmp/fastjar.tar.gz -C $HOME/deployments/
+RUN rm -rf /$HOME/tmp
+
+ENV JAVA_OPTS="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
 
 EXPOSE 8080
+EXPOSE 5005
 
-CMD exec java $JAVA_OPTS -jar $HOME/$APP_DIR/$JAR_FILE
+CMD exec java $JAVA_OPTS -jar $HOME/deployments/quarkus-run.jar
