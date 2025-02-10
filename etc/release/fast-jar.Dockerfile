@@ -24,8 +24,7 @@ ENV NEXUS_OBJECT_VERSION=$POM_VERSION
 
 ENV NEXUS_DOWNLOAD_OUTPUT_FILE_NAME=fastjar.tar.gz
 
-#RUN $HOME/script/sonatype-download.sh
-COPY ticker-services/ticker-core-quartz-service/target/distributions/ticker-core-quartz-service-1.5.0-SNAPSHOT.tar.gz /home/icellmobilsoft/download/fastjar.tar.gz
+RUN $HOME/script/sonatype-download.sh
 
 ################################################################################
 # Create production image
