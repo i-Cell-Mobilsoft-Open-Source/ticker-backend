@@ -1,0 +1,9 @@
+= ticker 1.5.0 [[ticker_1_5_0]]
+
+== Changes
+* uber-jar -> fast-jar
+
+==== Migration
+
+The changes are backward compatible and do not require migration.
+

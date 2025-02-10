@@ -57,7 +57,7 @@ quarkus:
   package:
     jar:
       add-runner-suffix: false
-      type: uber-jar
+      type: fast-jar
   quartz:
     clustered: false
     thread-count: ${TICKER_QUARTZ_THREAD_COUNT:25}
