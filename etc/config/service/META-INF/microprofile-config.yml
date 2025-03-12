@@ -39,8 +39,9 @@ quarkus:
       "hu.icellmobilsoft":
         level: ${TICKER_LOG_HU_ICELLMOBILSOFT_LEVEL:INFO}
     console:
+      enable: ${TICKER_LOG_CONSOLE_ENABLE:true}
       json: ${TICKER_LOG_CONSOLE_JSON_ENABLED:false}
-      format: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [thread:%t] [%c{10}] [sid:%X{extSessionId}] - %s%E%n"
+      format: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [traceId=%X{traceId}] [spanId=%X{spanId}] [thread:%t] [%c{10}] [sid:%X{extSessionId}] - %s%E%n"
     handler:
       gelf:
         additional-field:
