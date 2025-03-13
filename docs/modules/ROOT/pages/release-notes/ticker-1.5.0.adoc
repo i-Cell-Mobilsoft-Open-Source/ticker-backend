@@ -9,7 +9,7 @@
 ** TICKER_JSON_MDC_FIELDS
 ** TICKER_JSON_EXCEPTION_OUTPUT_TYPE
 ** TICKER_JSON_DATE_FORMAT
-* GELF logging: moduleId and moduleVersion values set in dockerfile
+* GELF logging: moduleId and moduleVersion values set in dockerfile. (It is preferred for projects implementing ticker-core-quartz and building their own image to set it as well.)
 * `quarkus.log.console.enable` configuration mapped to TICKER_LOG_CONSOLE_ENABLE environment variable (default true)
 
 ==== Migration
