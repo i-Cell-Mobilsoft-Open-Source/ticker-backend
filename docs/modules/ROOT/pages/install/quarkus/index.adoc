@@ -1,3 +1,4 @@
+[[quarkus_config]]
 = Quarkus based configs
 
 Since the application is Quarkus based, the default Quarkus settings can be used in it.
@@ -17,14 +18,22 @@ Important elements that are already defined by default with the project:
 
 | quarkus.log.category."hu.icellmobilsoft".level | hu.icellmobilsoft category log level | TICKER_LOG_HU_ICELLMOBILSOFT_LEVEL | INFO
 
+| quarkus.log.console.enable | Console logging enable | TICKER_LOG_CONSOLE_ENABLE | true
 | quarkus.log.console.json | Json logging enable | TICKER_LOG_CONSOLE_JSON_ENABLED | false
 
-| quarkus.log.console.format | Console log format | - | `%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [thread:%t] [%c{10}] [sid:%X{extSessionId}] - %s%E%n`
+| quarkus.log.console.json.additional-field."moduleVersion".value | JSON log - *moduleVersion* additional-field value | TICKER_JSON_MODULE_VERSION | <POM_VERSION> Set in dockerfile. It is preferred for projects implementing ticker-core-quartz and building their own image to set it as well.
+| quarkus.log.console.json.additional-field."moduleId".value | JSON log - *moduleId* additional-field value | TICKER_JSON_MODULE_ID | <POM_ARTIFACT_ID> Set in dockerfile. It is preferred for projects implementing ticker-core-quartz and building their own image to set it as well.
+| quarkus.log.console.json.additional-field."K8S_NAMESPACE".value | JSON log - *K8S_NAMESPACE* additional-field value | TICKER_JSON_K8S_NAMESPACE | unknown
+| quarkus.log.console.json.additional-field."JSON_MDC_FIELDS".value | JSON log - *JSON_MDC_FIELDS* additional-field value | TICKER_JSON_MDC_FIELDS | none
+| quarkus.log.console.json.exception-output-type | JSON log - The exception output type to specify https://quarkus.io/version/3.15/guides/all-config#quarkus-logging-json_quarkus-log-console-json-exception-output-type[Link] | TICKER_JSON_EXCEPTION_OUTPUT_TYPE | formatted
+| quarkus.log.console.json.date-format | JSON log - The date format to use https://quarkus.io/version/3.15/guides/all-config#quarkus-logging-json_quarkus-log-console-json-date-format[Link] | TICKER_JSON_DATE_FORMAT | `yyyy-MM-dd HH:mm:ss,SSSZ`
 
-| quarkus.log.handler.gelf.additional-field."moduleVersion".value | Gelf log - *moduleVersion* additional-field value | TICKER_LOGSTASH_MODULE_VERSION | unknown
-| quarkus.log.handler.gelf.additional-field."moduleId".value | Gelf log - *moduleId* additional-field value | TICKER_LOGSTASH_MODULE_ID | unknown
+| quarkus.log.console.format | Console log format | - | `%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [traceId=%X{traceId}] [spanId=%X{spanId}] [thread:%t] [%c{10}] [sid:%X{extSessionId}] - %s%E%n`
+
+| quarkus.log.handler.gelf.additional-field."moduleVersion".value | Gelf log - *moduleVersion* additional-field value | TICKER_LOGSTASH_MODULE_VERSION | <POM_VERSION> Set in dockerfile. It is preferred for projects implementing ticker-core-quartz and building their own image to set it as well.
+| quarkus.log.handler.gelf.additional-field."moduleId".value | Gelf log - *moduleId* additional-field value | TICKER_LOGSTASH_MODULE_ID | <POM_ARTIFACT_ID> Set in dockerfile. It is preferred for projects implementing ticker-core-quartz and building their own image to set it as well.
 | quarkus.log.handler.gelf.additional-field."K8S_NAMESPACE".value | Gelf log - *K8S_NAMESPACE* additional-field value | TICKER_LOGSTASH_K8S_NAMESPACE | unknown
-| quarkus.handler.gelf.include-full-mdc | Gelf log - Whether to include all fields from the MDC. | TICKER_LOGSTASH_K8S_NAMESPACE | false
+| quarkus.handler.gelf.include-full-mdc | Gelf log - Whether to include all fields from the MDC. | - | false
 | quarkus.log.level | Quarkus log level: https://quarkus.io/version/3.15/guides/all-config#quarkus-core_quarkus.log.level[Link] | TICKER_LOG_LEVEL | INFO
 | quarkus.log.min-level | Quarkus min log level: https://quarkus.io/version/3.15/guides/all-config#quarkus-core_quarkus.log.min-level[Link] | TICKER_LOG_MIN_LEVEL | ALL
 
