@@ -18,8 +18,11 @@ services:
       args:
         ICELL_JAVA_JRE_BASE_IMAGE: 'icellmobilsoft/base-java21jre:${DOCKER_BASE_IMAGE_VERSION}'
         SERVICE: 'ticker-core-quartz-service'
+#        POM_VERSION: 1.5.0-SNAPSHOT
+#        POM_ARTIFACT_ID: ticker-core-quartz
     image: "ticker-core-quartz-service:develop-local-oss"
     environment:
+#      - TICKER_LOG_CONSOLE_JSON_ENABLED=true
       # With this config, service use application-dev.yml!
       - MP_CONFIG_PROFILE=dev
       # endpoint fix to mock
