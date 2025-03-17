@@ -1,3 +1,6 @@
+:sectnums:
+:sectnumlevels: 3
+
 = Additional Information
 
 == Useful Commands and Accesses

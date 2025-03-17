@@ -1,3 +1,6 @@
+:sectnums:
+:sectnumlevels: 3
+
 = Installation, Deployment
 
 == General Service Settings
