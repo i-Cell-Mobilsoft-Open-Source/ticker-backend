@@ -4,7 +4,7 @@
     <parent>
         <groupId>hu.icellmobilsoft.ticker</groupId>
         <artifactId>ticker-common</artifactId>
-        <version>1.5.0-SNAPSHOT</version>
+        <version>1.5.0</version>
     </parent>
 
     <artifactId>ticker-common-metrics</artifactId>
