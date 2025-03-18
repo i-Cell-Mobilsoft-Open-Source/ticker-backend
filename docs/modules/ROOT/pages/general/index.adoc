@@ -21,7 +21,7 @@ The goal of the project is to provide a modular solution for triggering processe
 :architecture: architecture.png
 image::{architecture}[Architecture,link="{imagesdir}/{architecture}",window=_blank]
 
-.Ticker backend {release_version}
+.Ticker backend {page.version}
 [options="header"]
 |===
 |Type| Module | Version|maven
