@@ -63,7 +63,6 @@ public class MicroprofileRestClientJob extends BaseCronJob {
     MicroprofileRestClientJobConfig microprofileRestClientJobConfig;
 
     /** {@inheritDoc} */
-    @SuppressWarnings("unchecked")
     @ActivateRequestContext
     @Override
     public void executeJob(JobExecutionContext context) throws BaseException {

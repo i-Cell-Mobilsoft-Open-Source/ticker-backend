@@ -19,7 +19,6 @@
  */
 package hu.icellmobilsoft.ticker.quartz.service.timer.job.httpclient;
 
-import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +27,7 @@ import jakarta.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
 
+import hu.icellmobilsoft.ticker.quartz.service.timer.job.AbstractJobConfig;
 import io.smallrye.config.SmallRyeConfig;
 
 /**
@@ -82,12 +82,7 @@ import io.smallrye.config.SmallRyeConfig;
  * @since 1.1.0
  */
 @Dependent
-public class HttpClientJobConfig {
-
-    /**
-     * Config pattern
-     */
-    public static final String CONFIG_PATTERN = "ticker.timer.job.{0}.config.{1}";
+public class HttpClientJobConfig extends AbstractJobConfig {
 
     /**
      * Config key: {@value }
@@ -116,8 +111,6 @@ public class HttpClientJobConfig {
 
     @Inject
     SmallRyeConfig config;
-
-    private String configKey;
 
     /**
      * @return Config value of {@value #CONFIG_PATTERN}, where {0} is {@link #configKey}, {1} is {@value #CONFIG_KEY_BASE_URL}
@@ -154,31 +147,4 @@ public class HttpClientJobConfig {
         return config.getOptionalValues(getKey(CONFIG_KEY_HEADERS_MAP), String.class, String.class).orElse(new HashMap<>());
     }
 
-    /**
-     * @param part
-     *            pattern 2nd config value
-     * @return key string of {@value #CONFIG_PATTERN}, where {0} is {@link #configKey}, {1} is required configKey part
-     */
-    public String getKey(String part) {
-        return MessageFormat.format(CONFIG_PATTERN, configKey, part);
-    }
-
-    /**
-     * Get config key
-     *
-     * @return configKey
-     */
-    public String getConfigKey() {
-        return configKey;
-    }
-
-    /**
-     * Set config key
-     *
-     * @param configKey
-     *            config key
-     */
-    public void setConfigKey(String configKey) {
-        this.configKey = configKey;
-    }
 }

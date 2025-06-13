@@ -29,6 +29,7 @@ import hu.icellmobilsoft.coffee.cdi.logger.AppLogger;
 import hu.icellmobilsoft.coffee.cdi.logger.ThisLogger;
 import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.ticker.quartz.service.timer.config.ITimerConfig;
+import hu.icellmobilsoft.ticker.quartz.service.timer.job.JobChecker;
 import hu.icellmobilsoft.ticker.quartz.service.timer.job.JobRegistrar;
 import io.quarkus.runtime.StartupEvent;
 
@@ -58,6 +59,7 @@ public class SchedulerController {
         List<String> configKeys = timerConfig.activeJobs();
 
         try {
+            JobChecker.validateConfiguration(configKeys);
             for (String configKey : configKeys) {
                 JobRegistrar.register(configKey);
             }

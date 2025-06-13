@@ -1,0 +1,9 @@
+= ticker 1.6.0 [[ticker_1_6_0]]
+
+== Changes
+* configuration prevalidation on startup (MicroprofileRestClientJob configuration only)
+
+==== Migration
+
+The changes are backward compatible and do not require migration.
+
