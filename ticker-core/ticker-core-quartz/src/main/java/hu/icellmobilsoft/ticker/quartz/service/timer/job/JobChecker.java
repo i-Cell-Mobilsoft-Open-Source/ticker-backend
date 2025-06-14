@@ -28,6 +28,7 @@ import javax.management.RuntimeErrorException;
 import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.spi.CDI;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.quartz.CronExpression;
@@ -73,6 +74,9 @@ public class JobChecker {
      *             if configuration has error
      */
     public static void validateConfiguration(List<String> configKeys) throws BaseException {
+        if (CollectionUtils.isEmpty(configKeys)) {
+            throw new TechnicalException(CoffeeFaultType.INVALID_INPUT, "Missing job configuration");
+        }
         for (String configKey : configKeys) {
             JobChecker.check(configKey);
         }
@@ -107,6 +111,8 @@ public class JobChecker {
     }
 
     /**
+     * job config validation via config key
+     * 
      * @param actionClass
      *            the action class to check
      * @param configKey
@@ -161,6 +167,8 @@ public class JobChecker {
     }
 
     /**
+     * checks the class can be loaded
+     * 
      * @param className
      *            the className to validate
      * @throws BaseException
@@ -175,6 +183,8 @@ public class JobChecker {
     }
 
     /**
+     * cheks the method can be called
+     * 
      * @param jobConfig
      * @throws BaseException
      *             if method configuration has error(s)
@@ -205,6 +215,8 @@ public class JobChecker {
     }
 
     /**
+     * checks the cron expression syntax
+     * 
      * @param cronExpression
      *            the cron expression to validate
      * @throws BaseException
