@@ -19,6 +19,10 @@ mp:
 # Quarkus settings
 #-------------------------------
 quarkus:
+  native:
+    resource:
+      includes:
+        - META-INF/MANIFEST.MF
   arc:
 #    remove-unused-beans: false
     unremovable-types:
