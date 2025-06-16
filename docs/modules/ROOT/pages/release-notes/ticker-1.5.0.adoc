@@ -13,7 +13,7 @@
 * `quarkus.log.console.enable` configuration mapped to TICKER_LOG_CONSOLE_ENABLE environment variable (default true)
 * README translated to english
 
-==== Migration
+== Migration
 
 The changes are backward compatible and do not require migration.
 

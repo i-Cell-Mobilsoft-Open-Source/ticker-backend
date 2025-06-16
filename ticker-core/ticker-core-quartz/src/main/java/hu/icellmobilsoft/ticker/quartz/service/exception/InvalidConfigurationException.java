@@ -26,10 +26,20 @@ package hu.icellmobilsoft.ticker.quartz.service.exception;
  * @since 1.6.0
  *
  */
-public class ConfigurationValidationException extends RuntimeException {
+public class InvalidConfigurationException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
     private static final String DEFAULT_EXCEPTION_MESSAGE = "Job configuration error: see logs for details!";
+
+    /**
+     * constructor with error message
+     * 
+     * @param message
+     *            the message to set
+     */
+    public InvalidConfigurationException(String message) {
+        super(message);
+    }
 
     /**
      * constructor with root exception and default message
@@ -37,7 +47,7 @@ public class ConfigurationValidationException extends RuntimeException {
      * @param exception
      *            the root cause to set
      */
-    public ConfigurationValidationException(Throwable exception) {
+    public InvalidConfigurationException(Throwable exception) {
         super(DEFAULT_EXCEPTION_MESSAGE, exception);
     }
 
@@ -49,7 +59,7 @@ public class ConfigurationValidationException extends RuntimeException {
      * @param exception
      *            the root cause to set
      */
-    public ConfigurationValidationException(String message, Throwable exception) {
+    public InvalidConfigurationException(String message, Throwable exception) {
         super(message, exception);
     }
 }

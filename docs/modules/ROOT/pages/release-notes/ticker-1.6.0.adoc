@@ -3,7 +3,7 @@
 == Changes
 * configuration prevalidation on startup (MicroprofileRestClientJob configuration only)
 
-==== Migration
+== Migration
 
 The changes are backward compatible and do not require migration.
 
