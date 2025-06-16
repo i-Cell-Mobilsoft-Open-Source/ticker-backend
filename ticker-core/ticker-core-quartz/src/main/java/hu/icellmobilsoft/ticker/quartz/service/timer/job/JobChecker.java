@@ -23,8 +23,6 @@ import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
 import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.spi.CDI;
 
@@ -39,6 +37,7 @@ import hu.icellmobilsoft.coffee.dto.exception.enums.CoffeeFaultType;
 import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.coffee.se.api.exception.TechnicalException;
 import hu.icellmobilsoft.ticker.common.dto.exception.enums.FaultType;
+import hu.icellmobilsoft.ticker.quartz.service.exception.ConfigurationValidationException;
 import hu.icellmobilsoft.ticker.quartz.service.exception.QuartzException;
 import hu.icellmobilsoft.ticker.quartz.service.timer.annotation.Timer;
 import hu.icellmobilsoft.ticker.quartz.service.timer.config.ITimerConfig;
@@ -103,7 +102,7 @@ public class JobChecker {
             isCronExpressionValid(timerConfig.cron());
         } catch (BaseException e) {
             LogProducer.logToAppLogger(log -> log.error("job configuration error: [{0}]", e.getLocalizedMessage()), JobChecker.class);
-            throw new RuntimeErrorException(new Error("Job configuration error: see logs for details!", e));
+            throw new ConfigurationValidationException(e);
         } finally {
             timerConfigInstance.destroy(timerConfig);
 
@@ -136,7 +135,9 @@ public class JobChecker {
                     instance.destroy(config);
                 }
             }
-        } else if (StringUtils.equals(actionClass, HttpClientJob.class.getName())) {
+            return;
+        }
+        if (StringUtils.equals(actionClass, HttpClientJob.class.getName())) {
             Instance<HttpClientJobConfig> instance = CDI.current().select(HttpClientJobConfig.class);
             HttpClientJobConfig config = null;
             try {
@@ -149,11 +150,9 @@ public class JobChecker {
                     instance.destroy(config);
                 }
             }
-        } else if (StringUtils.equals(actionClass, DummyJob.class.getName())) {
-            // do nothing
-        } else {
-            throw new TechnicalException(FaultType.VALIDATION_ERROR, "Invalid action class: " + actionClass);
+            return;
         }
+        throw new TechnicalException(FaultType.VALIDATION_ERROR, "Invalid action class: " + actionClass);
     }
 
     private static void validateMicroprofileRestClientJob(MicroprofileRestClientJobConfig config) throws BaseException {
