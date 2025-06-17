@@ -11,12 +11,11 @@
 
     <dependencies>
 
-        <!-- Project dependencies -->
+        <!-- Coffee dependencies -->
         <dependency>
-            <groupId>hu.icellmobilsoft.ticker</groupId>
-            <artifactId>ticker-common-core</artifactId>
+            <groupId>hu.icellmobilsoft.coffee</groupId>
+            <artifactId>coffee-module-mp-telemetry</artifactId>
         </dependency>
-
 
         <!-- Utils dependencies -->
         <dependency>
