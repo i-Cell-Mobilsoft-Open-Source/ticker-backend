@@ -1,0 +1,14 @@
+= ticker 1.6.0 [[ticker_1_6_0]]
+
+== Changes
+* Configuration prevalidation on startup (MicroprofileRestClientJob configuration only)
+* Coffee 2.11.0 upgrade
+
+== Migration
+
+The changes are backward compatible and do not require migration.
+
+[NOTE]
+====
+If the `ticker.config.validation` configuration key is set to true, the job configuration will be validated at startup, and the application will fail to start in case of any errors.
+====

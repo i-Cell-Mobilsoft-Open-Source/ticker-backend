@@ -25,10 +25,15 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Observes;
 import jakarta.inject.Inject;
 
+import org.apache.commons.lang3.BooleanUtils;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
 import hu.icellmobilsoft.coffee.cdi.logger.AppLogger;
 import hu.icellmobilsoft.coffee.cdi.logger.ThisLogger;
 import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
+import hu.icellmobilsoft.ticker.common.dto.constant.ConfigKeys;
 import hu.icellmobilsoft.ticker.quartz.service.timer.config.ITimerConfig;
+import hu.icellmobilsoft.ticker.quartz.service.timer.job.JobConfigurationChecker;
 import hu.icellmobilsoft.ticker.quartz.service.timer.job.JobRegistrar;
 import io.quarkus.runtime.StartupEvent;
 
@@ -43,10 +48,17 @@ public class SchedulerController {
 
     @Inject
     @ThisLogger
-    AppLogger log;
+    private AppLogger log;
 
     @Inject
-    ITimerConfig timerConfig;
+    private ITimerConfig timerConfig;
+
+    @Inject
+    private JobConfigurationChecker jobConfigurationChecker;
+
+    @Inject
+    @ConfigProperty(name = ConfigKeys.Ticker.Config.VALIDATION, defaultValue = ConfigKeys.Ticker.Defaults.TICKER_CONFIG_VALIDATION_DEFAULT)
+    private String isConfigValidationEnabled;
 
     /**
      * Scheduling Jobs Programmatically.
@@ -56,6 +68,9 @@ public class SchedulerController {
      */
     void onStart(@Observes StartupEvent event) {
         List<String> configKeys = timerConfig.activeJobs();
+        if (BooleanUtils.toBoolean(isConfigValidationEnabled)) {
+            jobConfigurationChecker.validateConfiguration(configKeys);
+        }
 
         try {
             for (String configKey : configKeys) {

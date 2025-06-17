@@ -16,6 +16,10 @@
             <groupId>hu.icellmobilsoft.coffee</groupId>
             <artifactId>coffee-dto-gen</artifactId>
         </dependency>
+        <dependency>
+            <groupId>hu.icellmobilsoft.coffee</groupId>
+            <artifactId>coffee-module-configdoc</artifactId>
+        </dependency>
 
         <!-- Jakarta dependencies -->
         <dependency>

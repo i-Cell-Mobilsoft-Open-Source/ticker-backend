@@ -50,7 +50,11 @@ public abstract class BaseCronJob implements Job {
     @Traced(component = "quartz-job")
     public void execute(JobExecutionContext context) {
         String jobType = context.getJobDetail().getDescription();
-        MDC.put(LogConstants.LOG_SERVICE_NAME, ResourceUtil.getAppName(getClass()));
+        String appName = ResourceUtil.getAppName(getClass());
+        if( appName == null ) {
+            appName = "quarkus:dev";
+        }
+        MDC.put(LogConstants.LOG_SERVICE_NAME, appName);
         MDC.put(LogConstants.LOG_SESSION_ID, RandomUtil.generateId());
 
         if (logger.isInfoEnabled()) {

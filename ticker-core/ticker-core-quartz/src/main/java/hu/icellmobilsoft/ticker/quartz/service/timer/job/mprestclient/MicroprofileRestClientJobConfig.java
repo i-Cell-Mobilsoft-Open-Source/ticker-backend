@@ -19,13 +19,14 @@
  */
 package hu.icellmobilsoft.ticker.quartz.service.timer.job.mprestclient;
 
-import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.List;
 
 import jakarta.enterprise.context.Dependent;
 
 import org.eclipse.microprofile.config.ConfigProvider;
+
+import hu.icellmobilsoft.ticker.quartz.service.timer.job.AbstractJobConfig;
 
 /**
  * Configuration keys for {@code ticker.timer.job._key_.actionClass:
@@ -66,12 +67,7 @@ import org.eclipse.microprofile.config.ConfigProvider;
  * @since 0.1.0
  */
 @Dependent
-public class MicroprofileRestClientJobConfig {
-
-    /**
-     * Config pattern
-     */
-    public static final String CONFIG_PATTERN = "ticker.timer.job.{0}.config.{1}";
+public class MicroprofileRestClientJobConfig extends AbstractJobConfig {
 
     /**
      * Config key: {@value }
@@ -87,8 +83,6 @@ public class MicroprofileRestClientJobConfig {
      * Config key: {@value }
      */
     public static final String CONFIG_KEY_PARAMETERS = "parameters";
-
-    private String configKey;
 
     /**
      * @return Config value of {@value #CONFIG_PATTERN}, where {0} is {@link #configKey}, {1} is {@value #CONFIG_KEY_MP_REST_CLIENT_CLASS}
@@ -111,31 +105,4 @@ public class MicroprofileRestClientJobConfig {
         return ConfigProvider.getConfig().getOptionalValues(getKey(CONFIG_KEY_PARAMETERS), String.class).orElse(Collections.emptyList());
     }
 
-    /**
-     * @param part
-     *            pattern 2nd config value
-     * @return key string of {@value #CONFIG_PATTERN}, where {0} is {@link #configKey}, {1} is required configKey part
-     */
-    public String getKey(String part) {
-        return MessageFormat.format(CONFIG_PATTERN, configKey, part);
-    }
-
-    /**
-     * Get config key
-     *
-     * @return configKey
-     */
-    public String getConfigKey() {
-        return configKey;
-    }
-
-    /**
-     * Set config key
-     *
-     * @param configKey
-     *            config key
-     */
-    public void setConfigKey(String configKey) {
-        this.configKey = configKey;
-    }
 }

@@ -21,8 +21,6 @@ package hu.icellmobilsoft.ticker.quartz.service.timer.config;
 
 import java.util.List;
 
-import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
-
 /**
  * Timer configuration values
  *
@@ -73,26 +71,20 @@ public interface ITimerConfig {
      * Job code name <code>ticker.timer.job.{0}.code</code>
      *
      * @return code name
-     * @throws BaseException
-     *             exception
      */
-    String code() throws BaseException;
+    String code();
 
     /**
      * Cron periodicity <code>ticker.timer.job.{0}.cron</code>
      *
      * @return cron formatted value
-     * @throws BaseException
-     *             exception
      */
-    String cron() throws BaseException;
+    String cron();
 
     /**
      * Called action class <code>ticker.timer.job.{0}.actionClass</code>
      *
      * @return Action class full name
-     * @throws BaseException
-     *             exception
      */
-    String actionClass() throws BaseException;
+    String actionClass();
 }
