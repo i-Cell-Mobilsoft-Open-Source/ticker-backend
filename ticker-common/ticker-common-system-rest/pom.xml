@@ -13,9 +13,13 @@
 
         <!-- Project dependencies -->
 
+<!--        <dependency>-->
+<!--            <groupId>hu.icellmobilsoft.ticker</groupId>-->
+<!--            <artifactId>ticker-common-api</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>hu.icellmobilsoft.ticker</groupId>
-            <artifactId>ticker-common-api</artifactId>
+            <artifactId>ticker-common-dto</artifactId>
         </dependency>
 
         <dependency>

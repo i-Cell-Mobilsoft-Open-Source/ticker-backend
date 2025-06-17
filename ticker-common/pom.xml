@@ -12,7 +12,7 @@
 
     <modules>
         <module>ticker-common-dto</module>
-        <module>ticker-common-api</module>
+<!--        <module>ticker-common-api</module>-->
         <module>ticker-common-health</module>
         <module>ticker-common-system-rest</module>
         <module>ticker-common-metrics</module>
