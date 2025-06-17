@@ -1,0 +1,20 @@
+= Backend
+
+The module's configuration is managed via MicroProfile Config, which allows specifying necessary values in multiple ways.
+
+MicroProfile Config can retrieve a given key from all available sources and uses the highest priority value.
+
+The base configuration is provided via `project-defaults.yml`, which can be extended and may vary per environment. It's not necessary to specify every value; only those that differ from the default settings.
+
+*Possible modes in order of priority:*
+
+* System variables
+* Environment variables
+
+ifdef::generatedDoc[]
+
+== TICKER-CORE-QUARTZ service
+
+include::../../attachments/generated/ticker-common-dto-config.adoc[leveloffset=+1]
+
+endif::[]
