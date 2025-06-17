@@ -11,12 +11,6 @@
 
     <dependencies>
 
-        <!-- Project dependencies -->
-        <dependency>
-            <groupId>hu.icellmobilsoft.ticker</groupId>
-            <artifactId>ticker-common-core</artifactId>
-        </dependency>
-
         <!-- MP apis dependencies -->
 
         <dependency>
