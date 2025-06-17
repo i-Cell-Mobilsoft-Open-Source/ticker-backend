@@ -31,6 +31,10 @@
         <!-- Coffee -->
         <dependency>
             <groupId>hu.icellmobilsoft.coffee</groupId>
+            <artifactId>coffee-module-quarkus</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>hu.icellmobilsoft.coffee</groupId>
             <artifactId>coffee-module-mp-restclient</artifactId>
         </dependency>
 
