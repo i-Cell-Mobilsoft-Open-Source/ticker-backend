@@ -49,3 +49,20 @@ docker-compose -f <PROJECT_PATH>/ticker-backend/etc/docker-compose/docker-compos
 NOTE: Quarkus processes and optimizes beans at *build-time*, unlike traditional runtime dependency injection models. Thanks to this: Only the actually used classes are included in the final application, while unnecessary ones are automatically removed.
 
 NOTE: MP Rest Client can only be configured at *build-time*, they cannot be dynamically registered or injected at runtime, therefore at build-time it can be packaged with a `Ticker core` module.
+
+.Using of AbstractQuarkusTest class
+[source,java]
+----
+@QuarkusTest <1>
+public class ProjectQuarkusTestIT extends AbstractQuarkusTest { <2>
+
+    @Override
+    public List<String> getExpectedJobKeys() { <3>
+        return List.of("...", "...");
+    }
+}
+----
+<1> add the QuarkusTest annotation
+<2> extend AbstractQuarkusTest class
+<3> override the getExpectedJobKeys method to return with the key list
+
