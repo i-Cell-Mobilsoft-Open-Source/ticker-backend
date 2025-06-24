@@ -19,12 +19,14 @@
  */
 package hu.icellmobilsoft.test.ticker.core.quartz.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import jakarta.inject.Inject;
 
-import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -43,22 +45,55 @@ public abstract class AbstractQuarkusTest {
     TickerHealthCheckStatus tickerHealthCheckStatus;
 
     /**
-     * @return get the expected job keys
+     *
+     * This method should be implemented by subclasses to provide the expected job keys. <br>
+     * <ul>
+     * <li>The expected job keys are the <code>ticker.timer.job.[jobName].code</code> configurations.</li>
+     * <li>The expected jobs should be active as well, thus listed in <code>ticker.timer.activeJobs</code> configuration.</li>
+     * </ul>
+     *
+     *
+     * @return the expected job keys
      */
     protected abstract List<String> getExpectedJobKeys();
-    
+
     /**
      * Testing job configuration
-     * 
-     * @param expectedJobKeys
-     *            expected job keys
+     *
      */
     @Test
     @DisplayName("Testing job configuration")
     public void testJobKeys() {
         List<QuartzJobStatus> quartzJobStatusList = tickerHealthCheckStatus.getSchedulerJobSummary();
+
         List<String> jobKeys = quartzJobStatusList.stream().map(QuartzJobStatus::getJobKey).sorted().toList();
-        MatcherAssert.assertThat(jobKeys, CoreMatchers.is(CoreMatchers.equalTo(getExpectedJobKeys().stream().map(jobKey -> jobKey + "-Job").sorted().toList())));
+        List<String> expectedJobKeys = getExpectedJobKeys().stream().map(jobKey -> jobKey + "-Job").sorted().toList();
+
+        List<String> jobKeyDifferences = getJobDifferences(jobKeys, expectedJobKeys);
+        List<String> expectedJobKeyDifferences = getJobDifferences(expectedJobKeys, jobKeys);
+
+        List<AssertionError> errors = new ArrayList<>();
+
+        softAssertAndCollectErrors("Configured jobs do not match the expected ones!", jobKeyDifferences, errors);
+        softAssertAndCollectErrors("Expected jobs do not match the configured ones!", expectedJobKeyDifferences, errors);
+
+        if (!errors.isEmpty()) {
+            String combinedError = errors.stream().map(Throwable::getMessage).collect(Collectors.joining("\n"));
+            throw new AssertionError(combinedError);
+        }
     }
 
+    private List<String> getJobDifferences(List<String> keys, List<String> keysToRemove) {
+        List<String> keyDifferences = new ArrayList<>(keys);
+        keyDifferences.removeAll(keysToRemove);
+        return keyDifferences;
+    }
+
+    private void softAssertAndCollectErrors(String reason, List<String> differences, List<AssertionError> errors) {
+        try {
+            MatcherAssert.assertThat(reason, differences, Matchers.empty());
+        } catch (AssertionError e) {
+            errors.add(e);
+        }
+    }
 }

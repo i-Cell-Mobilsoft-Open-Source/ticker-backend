@@ -53,6 +53,14 @@
                 <artifactId>ticker-samples-mockapi</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>hu.icellmobilsoft.ticker</groupId>
+                <artifactId>ticker-core-quartz</artifactId>
+                <version>${project.version}</version>
+                <classifier>tests</classifier>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

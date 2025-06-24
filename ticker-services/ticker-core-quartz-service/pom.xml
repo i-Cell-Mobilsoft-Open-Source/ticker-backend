@@ -34,6 +34,12 @@
             <artifactId>rest-assured</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>hu.icellmobilsoft.ticker</groupId>
+            <artifactId>ticker-core-quartz</artifactId>
+            <classifier>tests</classifier>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
