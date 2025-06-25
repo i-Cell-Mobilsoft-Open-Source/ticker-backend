@@ -54,6 +54,18 @@ NOTE: MP Rest Client can only be configured at *build-time*, they cannot be dyna
 
 We provide an abstract test class which can be extended on project side to validate that all expected jobs have been configured.
 
+.Test scoped dependency
+[source,xml]
+----
+<dependency>
+    <groupId>hu.icellmobilsoft.ticker</groupId>
+    <artifactId>ticker-core-quartz</artifactId>
+    <version>${version}</version>
+    <classifier>tests</classifier>
+    <scope>test</scope>
+</dependency>
+----
+
 .Using of AbstractQuarkusTest class
 [source,java]
 ----
@@ -69,4 +81,7 @@ public class ProjectQuarkusTestIT extends AbstractQuarkusTest { <2>
 <1> add the QuarkusTest annotation
 <2> extend AbstractQuarkusTest class
 <3> override the getExpectedJobKeys method to return with the key list
+
+* The expected job keys are the `ticker.timer.job.[jobName].code` configurations.
+* The expected jobs should be active as well, thus listed in `ticker.timer.activeJobs` configuration.
 
