@@ -3,7 +3,7 @@
 == Changes
 * Configuration prevalidation on startup (MicroprofileRestClientJob configuration only)
 * Coffee 2.11.0 upgrade
-* AbstractQuarkusTest has been added for testing job configuration
+* AbstractQuarkusTest has been added for testing job configuration. See: xref:../additional/index.adoc#validating-with-test[Additional Information]
 
 == Migration
 
