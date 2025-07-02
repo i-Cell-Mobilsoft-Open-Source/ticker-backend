@@ -50,6 +50,7 @@ NOTE: Quarkus processes and optimizes beans at *build-time*, unlike traditional 
 
 NOTE: MP Rest Client can only be configured at *build-time*, they cannot be dynamically registered or injected at runtime, therefore at build-time it can be packaged with a `Ticker core` module.
 
+[[validating-with-test]]
 == Validating job configuration existence with test
 
 We provide an abstract test class which can be extended on project side to validate that all expected jobs have been configured.
