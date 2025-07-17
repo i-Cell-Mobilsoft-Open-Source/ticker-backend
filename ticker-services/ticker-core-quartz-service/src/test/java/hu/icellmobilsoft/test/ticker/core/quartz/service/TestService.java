@@ -28,6 +28,6 @@ public class TestService extends AbstractQuarkusTest {
 
     @Override
     protected List<String> getExpectedJobKeys() {
-        return List.of("TEST_REST", "TEST_REST_2", "TEST_APACHE_HTTP_CLIENT_GET", "TEST_APACHE_HTTP_CLIENT_POST");
+        return List.of("TEST_REST", "TEST_REST_2", "TEST_APACHE_HTTP_CLIENT_GET", "TEST_APACHE_HTTP_CLIENT_POST", "TICKER_PROCESS_SCHEDULED_TASKS");
     }
 }

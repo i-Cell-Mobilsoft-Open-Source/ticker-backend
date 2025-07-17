@@ -48,17 +48,17 @@ public class SchedulerController {
 
     @Inject
     @ThisLogger
-    private AppLogger log;
+    AppLogger log;
 
     @Inject
-    private ITimerConfig timerConfig;
+    ITimerConfig timerConfig;
 
     @Inject
-    private JobConfigurationChecker jobConfigurationChecker;
+    JobConfigurationChecker jobConfigurationChecker;
 
     @Inject
     @ConfigProperty(name = ConfigKeys.Ticker.Config.VALIDATION, defaultValue = ConfigKeys.Ticker.Defaults.TICKER_CONFIG_VALIDATION_DEFAULT)
-    private String isConfigValidationEnabled;
+    String isConfigValidationEnabled;
 
     /**
      * Scheduling Jobs Programmatically.

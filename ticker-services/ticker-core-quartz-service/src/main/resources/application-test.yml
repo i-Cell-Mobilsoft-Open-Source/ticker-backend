@@ -43,12 +43,15 @@ quarkus:
     enable: true
 
 ticker:
+  config:
+    validation: true
   timer:
     activeJobs:
       - TEST_REST
       - TEST_REST_2
       - TEST_APACHE_HTTP_CLIENT_GET
       - TEST_APACHE_HTTP_CLIENT_POST
+      - tickerProcessScheduledTasks
     job:
       TEST_REST:
         code: TEST_REST
@@ -104,3 +107,7 @@ ticker:
             testLong: 50000
             testBoolean: true
             testOffsetDateTime: 2023-06-07T13:45:27.893Z
+      tickerProcessScheduledTasks:
+        code: TICKER_PROCESS_SCHEDULED_TASKS
+        cron: "0 */5 * * * ? *"
+        actionClass: hu.icellmobilsoft.ticker.core.quartz.service.job.ProcessScheduledTaskJob

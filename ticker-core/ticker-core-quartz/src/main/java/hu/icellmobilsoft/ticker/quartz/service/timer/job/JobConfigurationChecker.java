@@ -27,13 +27,11 @@ import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.spi.CDI;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.quartz.Job;
+import org.quartz.CronExpression;
 
 import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.ticker.quartz.service.exception.InvalidConfigurationException;
-import hu.icellmobilsoft.ticker.quartz.service.exception.QuartzException;
 import hu.icellmobilsoft.ticker.quartz.service.timer.annotation.Timer;
 import hu.icellmobilsoft.ticker.quartz.service.timer.config.ITimerConfig;
 import hu.icellmobilsoft.ticker.quartz.service.timer.job.dummy.DummyJob;
@@ -85,7 +83,7 @@ public class JobConfigurationChecker {
      * @param configKey
      *            config key
      */
-    public void check(String configKey) {
+    private void check(String configKey) {
         if (StringUtils.isBlank(configKey)) {
             throw new InvalidConfigurationException("ConfigKey is empty");
         }
@@ -94,13 +92,12 @@ public class JobConfigurationChecker {
         ITimerConfig timerConfig = timerConfigInstance.get();
 
         try {
-            Class<? extends Job> clazz = jobPrototypeInstance(timerConfig.actionClass());
+            JobRegistrar.jobPrototypeInstance(timerConfig.actionClass());
             validateJobConfig(timerConfig, configKey);
         } catch (BaseException e) {
             throw new InvalidConfigurationException(e);
         } finally {
             timerConfigInstance.destroy(timerConfig);
-
         }
     }
 
@@ -112,7 +109,7 @@ public class JobConfigurationChecker {
      * @param configKey
      *            the configuration key
      */
-    private void validateJobConfig(ITimerConfig timerConfig, String configKey) {
+    private void validateJobConfig(ITimerConfig timerConfig, String configKey) throws BaseException {
         if (StringUtils.equals(timerConfig.actionClass(), MicroprofileRestClientJob.class.getName())) {
             CDI.current()
                     .select(MicroprofileRestClientJobConfigChecker.class)
@@ -121,21 +118,10 @@ public class JobConfigurationChecker {
         } else if (StringUtils.equals(timerConfig.actionClass(), HttpClientJob.class.getName())) {
             CDI.current().select(HttpClientJobConfigChecker.class).get().check(timerConfig, configKey, HttpClientJobConfig.class);
         } else if (!StringUtils.equals(timerConfig.actionClass(), DummyJob.class.getName())) {
-            throw new InvalidConfigurationException("Invalid action class: " + timerConfig.actionClass());
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    private Class<? extends Job> jobPrototypeInstance(String actionClassName) throws BaseException {
-        try {
-            Class<?> actionClass = ClassUtils.getClass(actionClassName);
-            if (Job.class.isAssignableFrom(actionClass)) {
-                return (Class<? extends Job>) actionClass;
-            } else {
-                throw new QuartzException(MessageFormat.format("The class [{0}] is not instance of org.quartz.Job class!", actionClass));
+            if (!CronExpression.isValidExpression(timerConfig.cron())) {
+                throw new InvalidConfigurationException(
+                        MessageFormat.format("Invalid CRON expression: [{0}] for job: [{1}]", timerConfig.cron(), configKey));
             }
-        } catch (ClassNotFoundException e) {
-            throw new QuartzException(MessageFormat.format("Invalid class in actionClass parameter: [{0}]!", e.getLocalizedMessage()), e);
         }
     }
 }
