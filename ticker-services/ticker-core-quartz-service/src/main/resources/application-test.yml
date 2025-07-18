@@ -44,7 +44,7 @@ quarkus:
 
 ticker:
   config:
-    validation: true
+    validation: false
   timer:
     activeJobs:
       - TEST_REST
