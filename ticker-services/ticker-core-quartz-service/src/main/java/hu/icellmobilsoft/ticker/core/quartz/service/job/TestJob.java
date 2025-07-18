@@ -21,6 +21,7 @@ package hu.icellmobilsoft.ticker.core.quartz.service.job;
 
 import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.context.control.ActivateRequestContext;
+import jakarta.inject.Inject;
 
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.JobExecutionContext;
@@ -30,32 +31,21 @@ import hu.icellmobilsoft.coffee.cdi.logger.ThisLogger;
 import hu.icellmobilsoft.ticker.quartz.service.quartz.BaseCronJob;
 
 /**
- * Job to process scheduled tasks. This job is executed by the Quartz scheduler to handle scheduled tasks. It extends the BaseCronJob class and
- * implements the executeJob method.
- *
+ * Test job for Quartz
+ * 
  * @author mate.biro
  * @since 1.6.0
  */
 @Dependent
 @DisallowConcurrentExecution
-public class ProcessScheduledTaskJob extends BaseCronJob {
+public class TestJob extends BaseCronJob {
 
-    private final AppLogger log;
-
-    /**
-     * Constructor for ProcessScheduledTaskJob.
-     *
-     * @param log
-     *            logger instance
-     */
-    public ProcessScheduledTaskJob(
-            @ThisLogger AppLogger log
-    ) {
-        this.log = log;
-    }
+    @Inject
+    @ThisLogger
+    AppLogger log;
 
     /**
-     * Execute the job to process scheduled tasks.
+     * Execute the job
      *
      * @param context
      *            Quartz context
@@ -63,6 +53,6 @@ public class ProcessScheduledTaskJob extends BaseCronJob {
     @ActivateRequestContext
     @Override
     public void executeJob(JobExecutionContext context) {
-        log.info("execute ProcessScheduledTaskJob");
+        log.info("execute TestJob");
     }
 }
