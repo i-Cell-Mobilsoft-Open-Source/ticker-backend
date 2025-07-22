@@ -86,3 +86,16 @@ public class ProjectQuarkusTestIT extends AbstractQuarkusTest { <2>
 * The expected job keys are the `ticker.timer.job.[jobName].code` configurations.
 * The expected jobs should be active as well, thus listed in `ticker.timer.activeJobs` configuration.
 
+[[validating-on-startup]]
+== Validating job configuration on startup
+
+If the `ticker.config.validation` configuration is set to true, the job configuration will be validated at startup, and the application will fail to start in case of any errors.
+
+Validations:
+
+* at least one job must be configured in `ticker.timer.activeJobs`
+* the cron expression configured in `ticker.timer.job.[jobName].cron` must be valid
+* the action class configured in `ticker.timer.job.[jobName].actionClass` must exist and implement the `org.quartz.Job` interface
+* in case of a `MicroprofileRestClientJob`:
+** the class configured in `ticker.timer.job.[jobName].config.mpRestClientClass` must exist
+** the method configured in `ticker.timer.job.[jobName].config.method` must be callable

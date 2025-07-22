@@ -25,7 +25,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Observes;
 import jakarta.inject.Inject;
 
-import org.apache.commons.lang3.BooleanUtils;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import hu.icellmobilsoft.coffee.cdi.logger.AppLogger;
@@ -48,17 +47,17 @@ public class SchedulerController {
 
     @Inject
     @ThisLogger
-    private AppLogger log;
+    AppLogger log;
 
     @Inject
-    private ITimerConfig timerConfig;
+    ITimerConfig timerConfig;
 
     @Inject
-    private JobConfigurationChecker jobConfigurationChecker;
+    JobConfigurationChecker jobConfigurationChecker;
 
     @Inject
     @ConfigProperty(name = ConfigKeys.Ticker.Config.VALIDATION, defaultValue = ConfigKeys.Ticker.Defaults.TICKER_CONFIG_VALIDATION_DEFAULT)
-    private String isConfigValidationEnabled;
+    boolean isConfigValidationEnabled;
 
     /**
      * Scheduling Jobs Programmatically.
@@ -68,7 +67,7 @@ public class SchedulerController {
      */
     void onStart(@Observes StartupEvent event) {
         List<String> configKeys = timerConfig.activeJobs();
-        if (BooleanUtils.toBoolean(isConfigValidationEnabled)) {
+        if (isConfigValidationEnabled) {
             jobConfigurationChecker.validateConfiguration(configKeys);
         }
 

@@ -43,12 +43,15 @@ quarkus:
     enable: true
 
 ticker:
+  config:
+    validation: false
   timer:
     activeJobs:
       - TEST_REST
       - TEST_REST_2
       - TEST_APACHE_HTTP_CLIENT_GET
       - TEST_APACHE_HTTP_CLIENT_POST
+      - TEST_CUSTOM_JOB
     job:
       TEST_REST:
         code: TEST_REST
@@ -104,3 +107,7 @@ ticker:
             testLong: 50000
             testBoolean: true
             testOffsetDateTime: 2023-06-07T13:45:27.893Z
+      TEST_CUSTOM_JOB:
+        code: TEST_CUSTOM_JOB
+        cron: "0 */5 * * * ? *"
+        actionClass: hu.icellmobilsoft.ticker.core.quartz.service.job.TestJob

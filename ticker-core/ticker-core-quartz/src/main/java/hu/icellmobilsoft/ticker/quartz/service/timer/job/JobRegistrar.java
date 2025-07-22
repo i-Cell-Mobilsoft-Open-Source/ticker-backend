@@ -84,8 +84,17 @@ public class JobRegistrar {
         timerConfigInstance.destroy(timerConfig);
     }
 
+    /**
+     * Get job prototype instance from action class name
+     *
+     * @param actionClassName
+     *            action class name
+     * @return job prototype instance
+     * @throws BaseException
+     *             on error
+     */
     @SuppressWarnings("unchecked")
-    private static Class<? extends Job> jobPrototypeInstance(String actionClassName) throws BaseException {
+    protected static Class<? extends Job> jobPrototypeInstance(String actionClassName) throws BaseException {
         try {
             Class<?> actionClass = ClassUtils.getClass(actionClassName);
             if (Job.class.isAssignableFrom(actionClass)) {
@@ -94,7 +103,7 @@ public class JobRegistrar {
                 throw new QuartzException(MessageFormat.format("The class [{0}] is not instance of org.quartz.Job class!", actionClass));
             }
         } catch (ClassNotFoundException e) {
-            throw new QuartzException(MessageFormat.format("Invalid class in actionClass parameter: [{0}]!", e.getLocalizedMessage()), e);
+            throw new QuartzException(MessageFormat.format("Class not found in actionClass parameter: [{0}]!", e.getLocalizedMessage()), e);
         }
     }
 }
