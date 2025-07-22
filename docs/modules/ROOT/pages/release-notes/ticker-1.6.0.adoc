@@ -1,7 +1,7 @@
 = ticker 1.6.0 [[ticker_1_6_0]]
 
 == Changes
-* Configuration prevalidation on startup (MicroprofileRestClientJob configuration only)
+* Configuration prevalidation on startup (MicroprofileRestClientJob configuration only). See: xref:../additional/index.adoc#validating-on-startup[Additional Information]
 * Coffee 2.11.0 upgrade
 * AbstractQuarkusTest has been added for testing job configuration. See: xref:../additional/index.adoc#validating-with-test[Additional Information]
 
