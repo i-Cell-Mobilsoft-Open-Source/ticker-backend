@@ -41,7 +41,7 @@ jobs:
 
       # Maven script [ deploy ]
       - name: Publish to GitHub Packages Apache Maven
-        run: mvn deploy -s $GITHUB_WORKSPACE/.github/.m2/settings.xml -P release
+        run: mvn deploy -s $GITHUB_WORKSPACE/.github/.m2/settings.xml
         env:
           GITHUB_TOKEN: '${{ secrets.GH_TOKEN_TECHUSER_JAVA }}'
           USERNAME: '${{ secrets.CENTRAL_SONATYPE_ORG_USER }}'
