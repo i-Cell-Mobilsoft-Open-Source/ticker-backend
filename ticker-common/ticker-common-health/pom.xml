@@ -9,6 +9,8 @@
 
     <artifactId>ticker-common-health</artifactId>
 
+    <name>${project.artifactId}</name>
+
     <dependencies>
 
         <!-- MP apis dependencies -->

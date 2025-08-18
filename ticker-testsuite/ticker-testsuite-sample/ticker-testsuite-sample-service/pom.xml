@@ -10,6 +10,8 @@
     <artifactId>ticker-testsuite-sample-service</artifactId>
     <packaging>pom</packaging>
 
+    <name>${project.artifactId}</name>
+
     <modules>
         <module>ticker-testsuite-sample-service-check</module>
 		<module>ticker-testsuite-sample-service-system-rest</module>

@@ -10,6 +10,8 @@
     <artifactId>ticker-bom-all</artifactId>
     <packaging>pom</packaging>
 
+    <name>${project.artifactId}</name>
+
     <properties>
         <version.coffee>2.11.0</version.coffee>
         <version.commons-collections4>4.4</version.commons-collections4>

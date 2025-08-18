@@ -9,6 +9,8 @@
 
     <artifactId>ticker-common-dto</artifactId>
 
+    <name>${project.artifactId}</name>
+
     <dependencies>
 
         <!-- Coffee dependencies -->

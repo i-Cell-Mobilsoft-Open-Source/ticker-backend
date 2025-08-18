@@ -11,6 +11,8 @@
     <artifactId>ticker-testsuite</artifactId>
     <packaging>pom</packaging>
 
+    <name>${project.artifactId}</name>
+
     <modules>
         <module>ticker-testsuite-bom</module>
         <module>ticker-testsuite-common</module>

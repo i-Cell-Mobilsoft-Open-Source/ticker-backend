@@ -9,6 +9,8 @@
 
     <artifactId>ticker-core-quartz</artifactId>
 
+    <name>${project.artifactId}</name>
+
     <dependencies>
 
         <!-- Project dependecies-->

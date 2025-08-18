@@ -10,6 +10,8 @@
     <artifactId>ticker-bom-quarkus</artifactId>
     <packaging>pom</packaging>
 
+    <name>${project.artifactId}</name>
+
     <dependencyManagement>
         <dependencies>
             <dependency>

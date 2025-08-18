@@ -9,6 +9,8 @@
 
     <artifactId>ticker-common-system-rest</artifactId>
 
+    <name>${project.artifactId}</name>
+
     <dependencies>
 
         <!-- Project dependencies -->

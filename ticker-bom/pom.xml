@@ -11,6 +11,8 @@
     <artifactId>ticker-bom</artifactId>
     <packaging>pom</packaging>
 
+    <name>${project.artifactId}</name>
+
     <modules>
         <module>ticker-bom-all</module>
         <module>ticker-bom-jakarta</module>

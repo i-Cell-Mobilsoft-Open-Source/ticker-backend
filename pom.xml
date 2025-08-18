@@ -13,7 +13,8 @@
 
     <packaging>pom</packaging>
 
-    <description>Ticker - Scheduler module, perform periodic operations based on configuration - powered By Quarkus 3+</description>
+    <name>Ticker - Scheduler module</name>
+    <description>Performs periodic operations based on configuration - powered By Quarkus 3+</description>
     <url>https://github.com/i-Cell-Mobilsoft-Open-Source/ticker-backend</url>
     <inceptionYear>2024</inceptionYear>
 
