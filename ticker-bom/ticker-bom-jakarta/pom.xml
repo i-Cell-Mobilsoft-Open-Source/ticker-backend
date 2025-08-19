@@ -10,6 +10,8 @@
     <artifactId>ticker-bom-jakarta</artifactId>
     <packaging>pom</packaging>
 
+    <name>${project.artifactId}</name>
+
     <properties>
         <version.jakarta.activation>2.1.2</version.jakarta.activation>
         <version.jakarta.annotation>2.1.1</version.jakarta.annotation>

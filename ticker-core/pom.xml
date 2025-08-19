@@ -10,6 +10,8 @@
     <artifactId>ticker-core</artifactId>
     <packaging>pom</packaging>
 
+    <name>${project.artifactId}</name>
+
     <modules>
         <module>ticker-core-quartz</module>
     </modules>

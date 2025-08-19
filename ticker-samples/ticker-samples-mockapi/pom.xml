@@ -9,6 +9,8 @@
 
     <artifactId>ticker-samples-mockapi</artifactId>
 
+    <name>${project.artifactId}</name>
+
     <dependencies>
 
         <!-- Project dependencies -->

@@ -10,6 +10,8 @@
     <artifactId>ticker-testsuite-bom</artifactId>
     <packaging>pom</packaging>
 
+    <name>${project.artifactId}</name>
+
     <properties>
         <version.hu.icellmobilsoft.roaster>2.5.0</version.hu.icellmobilsoft.roaster>
 

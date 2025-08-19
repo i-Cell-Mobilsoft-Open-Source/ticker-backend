@@ -10,6 +10,8 @@
     <artifactId>ticker-common</artifactId>
     <packaging>pom</packaging>
 
+    <name>${project.artifactId}</name>
+
     <modules>
         <module>ticker-common-dto</module>
         <module>ticker-common-health</module>
