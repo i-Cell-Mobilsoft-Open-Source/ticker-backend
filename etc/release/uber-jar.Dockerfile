@@ -9,7 +9,7 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en'
 ################################################################################
 # Download .jar
 ################################################################################
-FROM icellmobilsoft/builder-nexus-download:1.5.0 as download
+FROM icellmobilsoft/builder-nexus-download:1.7.0-SNAPSHOT as download
 
 ARG POM_GROUP_ID
 ARG POM_ARTIFACT_ID
@@ -20,6 +20,7 @@ ENV NEXUS_OBJECT_GROUP_ID=$POM_GROUP_ID
 ENV NEXUS_OBJECT_ARTIFACT_ID=$POM_ARTIFACT_ID
 ENV NEXUS_OBJECT_EXTENSION=$POM_EXTENSION
 ENV NEXUS_OBJECT_VERSION=$POM_VERSION
+ENV NEXUS_REPOSITORY_TYPE=central
 
 RUN $HOME/script/sonatype-download.sh
 
