@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
 
     # run only on main
-    if: ((github.ref_name == 'main' && contains('["rombow","czenczl","speter555","mate-biro","cserhatit","Adigolyo"]', github.actor)) || startsWith(github.ref, 'refs/tags/'))
+    #if: ((github.ref_name == 'main' && contains('["rombow","czenczl","speter555","mate-biro","cserhatit","Adigolyo"]', github.actor)) || startsWith(github.ref, 'refs/tags/'))
 
     steps:
 
@@ -45,13 +45,13 @@ jobs:
         run: |
           sudo apt-get install libxml2-utils
           PROJECT_VERSION=`echo -e 'setns x=http://maven.apache.org/POM/4.0.0\ncat /x:project/x:version/text()' | xmllint --shell pom.xml | grep -v /`
-          echo "PROJECT_VERSION=${PROJECT_VERSION}" >> $GITHUB_OUTPUT
+          echo "PROJECT_VERSION=1.6.0" >> $GITHUB_OUTPUT
 
       # Set RELEASED_VERSION
       - id: prepare
         name: Set RELEASED_VERSION into etc/release/.env
         run: |
-          echo "RELEASED_VERSION="${{steps.getVersion.outputs.PROJECT_VERSION}} >> etc/release/.env
+          echo "RELEASED_VERSION="1.6.0 >> etc/release/.env
 
       # https://github.com/docker/docker/login-action
       - name: Login to Docker Hub
