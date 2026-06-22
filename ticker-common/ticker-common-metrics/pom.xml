@@ -25,12 +25,9 @@
             <artifactId>commons-collections</artifactId>
         </dependency>
 
-
-        <!-- MP apis dependencies -->
-
         <dependency>
-            <groupId>org.eclipse.microprofile.metrics</groupId>
-            <artifactId>microprofile-metrics-api</artifactId>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-core</artifactId>
         </dependency>
 
 

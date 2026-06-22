@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,16 +20,15 @@
 package hu.icellmobilsoft.ticker.metrics;
 
 import java.time.Duration;
-import java.util.Arrays;
 
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.eclipse.microprofile.metrics.Metadata;
-import org.eclipse.microprofile.metrics.MetricRegistry;
-import org.eclipse.microprofile.metrics.MetricType;
-import org.eclipse.microprofile.metrics.Tag;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.DistributionSummary;
+import io.micrometer.core.instrument.Gauge;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Timer;
 
 /**
  * Metrics helper class
@@ -41,11 +40,11 @@ import org.eclipse.microprofile.metrics.Tag;
 public class MetricsHelper {
 
     @Inject
-    MetricRegistry metricRegistry;
+    MeterRegistry meterRegistry;
 
     /**
      * Add Gauge type metric
-     * 
+     *
      * @param metadataName
      *            metadata's name
      * @param metadataDescription
@@ -57,14 +56,16 @@ public class MetricsHelper {
      * @param tagValue
      *            tag's value
      */
-    public void addGaugeMetric(String metadataName, String metadataDescription, int gaugeValue, String tagKey, String tagValue) {
-        Tag tag = new Tag(tagKey, tagValue);
-        addGaugeMetric(metadataName, metadataDescription, gaugeValue, tag);
+    public void addGaugeMetric(String metadataName, String metadataDescription, long gaugeValue, String tagKey, String tagValue) {
+        Gauge.builder(metadataName, () -> gaugeValue)
+                .description(metadataDescription)
+                .tag(tagKey, tagValue)
+                .register(meterRegistry);
     }
 
     /**
      * Add Gauge type metric
-     * 
+     *
      * @param metadataName
      *            metadata's name
      * @param metadataDescription
@@ -72,20 +73,18 @@ public class MetricsHelper {
      * @param gaugeValue
      *            value for gauge
      * @param tags
-     *            tags for metric
+     *            tags for metric (key-value pairs)
      */
-    public void addGaugeMetric(String metadataName, String metadataDescription, int gaugeValue, Tag... tags) {
-        Metadata metadataG = Metadata.builder().withName(metadataName).withDescription(metadataDescription).withType(MetricType.GAUGE).build();
-        if (tags != null && CollectionUtils.isNotEmpty(Arrays.asList(tags))) {
-            metricRegistry.gauge(metadataG, () -> gaugeValue, tags);
-        } else {
-            metricRegistry.gauge(metadataG, () -> gaugeValue);
-        }
+    public void addGaugeMetric(String metadataName, String metadataDescription, int gaugeValue, String... tags) {
+        Gauge.builder(metadataName, () -> gaugeValue)
+                .description(metadataDescription)
+                .tags(tags)
+                .register(meterRegistry);
     }
 
     /**
-     * Add Gauge type metric
-     * 
+     * Add Counter type metric (increment by one)
+     *
      * @param metadataName
      *            metadata's name
      * @param metadataDescription
@@ -96,27 +95,29 @@ public class MetricsHelper {
      *            tag's value
      */
     public void addCounterIncOneMetric(String metadataName, String metadataDescription, String tagKey, String tagValue) {
-        Tag keyTag = new Tag(tagKey, tagValue);
-        addCounterIncOneMetric(metadataName, metadataDescription, keyTag);
+        Counter.builder(metadataName)
+                .description(metadataDescription)
+                .tag(tagKey, tagValue)
+                .register(meterRegistry)
+                .increment();
     }
 
     /**
-     * Add Gauge type metric
+     * Add Counter type metric (increment by one)
      *
      * @param metadataName
      *            metadata's name
      * @param metadataDescription
      *            metadata's description
      * @param tags
-     *            tags for metric
+     *            tags for metric (key-value pairs)
      */
-    public void addCounterIncOneMetric(String metadataName, String metadataDescription, Tag... tags) {
-        Metadata metadata = Metadata.builder().withName(metadataName).withDescription(metadataDescription).withType(MetricType.COUNTER).build();
-        if (tags != null && CollectionUtils.isNotEmpty(Arrays.asList(tags))) {
-            metricRegistry.counter(metadata, tags).inc();
-        } else {
-            metricRegistry.counter(metadata).inc();
-        }
+    public void addCounterIncOneMetric(String metadataName, String metadataDescription, String... tags) {
+        Counter.builder(metadataName)
+                .description(metadataDescription)
+                .tags(tags)
+                .register(meterRegistry)
+                .increment();
     }
 
     /**
@@ -128,16 +129,17 @@ public class MetricsHelper {
      *            metadata's description
      * @param duration
      *            duration for timer
-     * @param unit
-     *            unit for metadata
      * @param tagKey
      *            tag's key
      * @param tagValue
      *            tag's value
      */
-    public void addTimerMetric(String metadataName, String metadataDescription, Duration duration, String unit, String tagKey, String tagValue) {
-        Tag tag = new Tag(tagKey, tagValue);
-        addTimerMetric(metadataName, metadataDescription, duration, unit, tag);
+    public void addTimerMetric(String metadataName, String metadataDescription, Duration duration, String tagKey, String tagValue) {
+        Timer.builder(metadataName)
+                .description(metadataDescription)
+                .tag(tagKey, tagValue)
+                .register(meterRegistry)
+                .record(duration);
     }
 
     /**
@@ -149,23 +151,15 @@ public class MetricsHelper {
      *            metadata's description
      * @param duration
      *            duration for timer
-     * @param unit
-     *            unit for metadata
      * @param tags
-     *            tags for metric
+     *            tags for metric (key-value pairs)
      */
-    public void addTimerMetric(String metadataName, String metadataDescription, Duration duration, String unit, Tag... tags) {
-        Metadata metadata = Metadata.builder()
-                .withName(metadataName)
-                .withDescription(metadataDescription)
-                .withType(MetricType.TIMER)
-                .withUnit(unit)
-                .build();
-        if (tags != null && CollectionUtils.isNotEmpty(Arrays.asList(tags))) {
-            metricRegistry.timer(metadata, tags).update(duration);
-        } else {
-            metricRegistry.timer(metadata).update(duration);
-        }
+    public void addTimerMetric(String metadataName, String metadataDescription, Duration duration, String... tags) {
+        Timer.builder(metadataName)
+                .description(metadataDescription)
+                .tags(tags)
+                .register(meterRegistry)
+                .record(duration);
     }
 
     /**
@@ -183,8 +177,11 @@ public class MetricsHelper {
      *            tag's value
      */
     public void addHistorgramMetric(String metadataName, String metadataDescription, long number, String tagKey, String tagValue) {
-        Tag tag = new Tag(tagKey, tagValue);
-        addHistorgramMetric(metadataName, metadataDescription, number, tag);
+        DistributionSummary.builder(metadataName)
+                .description(metadataDescription)
+                .tag(tagKey, tagValue)
+                .register(meterRegistry)
+                .record(number);
     }
 
     /**
@@ -199,13 +196,12 @@ public class MetricsHelper {
      * @param tags
      *            tags for metric
      */
-    public void addHistorgramMetric(String metadataName, String metadataDescription, long number, Tag... tags) {
-        Metadata metadata = Metadata.builder().withName(metadataName).withDescription(metadataDescription).withType(MetricType.HISTOGRAM).build();
-        if (tags != null && CollectionUtils.isNotEmpty(Arrays.asList(tags))) {
-            metricRegistry.histogram(metadata, tags).update(number);
-        } else {
-            metricRegistry.histogram(metadata).update(number);
-        }
+    public void addHistorgramMetric(String metadataName, String metadataDescription, long number, String... tags) {
+        DistributionSummary.builder(metadataName)
+                .description(metadataDescription)
+                .tags(tags)
+                .register(meterRegistry)
+                .record(number);
     }
 
 }

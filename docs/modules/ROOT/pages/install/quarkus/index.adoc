@@ -39,8 +39,13 @@ Important elements that are already defined by default with the project:
 
 
 | quarkus.otel.enabled | OpenTelemetry - enabled config: https://quarkus.io/version/3.15/guides/all-config#quarkus-opentelemetry_quarkus-otel-enabled[Link] | QUARKUS_OTEL_ENABLED | false
-| quarkus.otel.traces.exporter | OpenTelemetry trace exporter - : https://quarkus.io/version/3.15/guides/all-config#quarkus-opentelemetry_quarkus-otel-traces-exporter[Link] | QUARKUS_OTEL_TRACES_EXPORTER | jaeger
-| quarkus.otel.exporter.otlp.traces.endpoint | OpenTelemetry endpoint - : https://quarkus.io/version/3.15/guides/all-config#quarkus-opentelemetry_quarkus-otel-exporter-otlp-endpoint[Link] | QUARKUS_OTEL_EXPORTER_OTLP_TRACES_ENDPOINT | http://localhost:4317
+| quarkus.otel.service.name | OpenTelemetry service name | QUARKUS_OTEL_SERVICE_NAME | `${quarkus.application.name}` (artifact id)
+| quarkus.otel.traces.exporter | OpenTelemetry trace exporter. Note: `jaeger` exporter is no longer supported: https://quarkus.io/version/3.15/guides/all-config#quarkus-opentelemetry_quarkus-otel-traces-exporter[Link] | QUARKUS_OTEL_TRACES_EXPORTER | otlp
+| quarkus.otel.traces.sampler | OpenTelemetry trace sampler type: https://quarkus.io/version/3.15/guides/all-config#quarkus-opentelemetry_quarkus-otel-traces-sampler[Link] | QUARKUS_OTEL_TRACES_SAMPLER | `parentbased_always_on`. Allowed values: `always_on`, `always_off`, `traceidratio`, `parentbased_always_on`, `parentbased_always_off`, `parentbased_traceidratio`
+| quarkus.otel.traces.sampler.arg | OpenTelemetry trace sampler ratio - only relevant when sampler is `traceidratio` or `parentbased_traceidratio`: https://quarkus.io/version/3.15/guides/all-config#quarkus-opentelemetry_quarkus-otel-traces-sampler-arg[Link] | QUARKUS_OTEL_TRACES_SAMPLER_ARG | 1.0d
+| quarkus.otel.exporter.otlp.endpoint | OpenTelemetry Collector gRPC endpoint for traces: https://quarkus.io/version/3.15/guides/all-config#quarkus-opentelemetry_quarkus-otel-exporter-otlp-endpoint[Link] | QUARKUS_OTEL_EXPORTER_OTLP_ENDPOINT | http://localhost:4317
+| quarkus.micrometer.export.otlp.enabled | Enable Micrometer OTLP-based metric export | QUARKUS_MICROMETER_EXPORT_OTLP_ENABLED | true
+| quarkus.micrometer.export.otlp.url | OpenTelemetry Collector endpoint for metrics | QUARKUS_MICROMETER_EXPORT_OTLP_URL | http://localhost:4318/v1/metrics
 | quarkus.package.jar.add-runner-suffix | Quarkus package add runner suffix: https://quarkus.io/version/3.15/guides/all-config#quarkus-core_quarkus-package-jar-add-runner-suffix[Link] | - | false
 | quarkus.package.jar.type | Quarkus package JAR type: https://quarkus.io/version/3.15/guides/all-config#quarkus-core_quarkus-package-jar-type[Link] | - | uber-jar
 

@@ -22,7 +22,7 @@
         <!-- Coffee -->
 
         <dependency>
-            <groupId>hu.icellmobilsoft.coffee</groupId>
+            <groupId>hu.icellmobilsoft.coffee.quarkus</groupId>
             <artifactId>coffee-module-mp-restclient-extension</artifactId>
         </dependency>
 
@@ -123,10 +123,10 @@
 
         <!-- Quarkus dependecies - Metrics -->
         <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-smallrye-metrics</artifactId>
+            <groupId>io.quarkiverse.micrometer.registry</groupId>
+            <artifactId>quarkus-micrometer-registry-otlp</artifactId>
         </dependency>
-        
+
         <!-- Test -->
         <dependency>
             <groupId>io.quarkus</groupId>

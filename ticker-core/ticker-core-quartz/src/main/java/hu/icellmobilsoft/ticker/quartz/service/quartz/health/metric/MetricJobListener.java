@@ -65,7 +65,7 @@ public class MetricJobListener implements JobListener {
         Trigger trigger = context.getTrigger();
 
         // prev fire time
-        metricsHelper.addHistorgramMetric(
+        metricsHelper.addGaugeMetric(
                 MetricsConstants.Quartz.Name.QUARTZ_JOB_PREV_FIRE_TIME,
                 MetricsConstants.Quartz.Description.QUARTZ_JOB_PREV_FIRE_TIME_DESCRIPTION,
                 trigger.getPreviousFireTime() != null ? trigger.getPreviousFireTime().toInstant().toEpochMilli() : 0,
@@ -73,7 +73,7 @@ public class MetricJobListener implements JobListener {
                 trigger.getJobKey().getName());
 
         // next fire time
-        metricsHelper.addHistorgramMetric(
+        metricsHelper.addGaugeMetric(
                 MetricsConstants.Quartz.Name.QUARTZ_JOB_NEXT_FIRE_TIME,
                 MetricsConstants.Quartz.Description.QUARTZ_JOB_NEXT_FIRE_TIME_DESCRIPTION,
                 trigger.getNextFireTime() != null ? trigger.getNextFireTime().toInstant().toEpochMilli() : 0,
@@ -81,7 +81,7 @@ public class MetricJobListener implements JobListener {
                 trigger.getJobKey().getName());
 
         // run time
-        metricsHelper.addHistorgramMetric(
+        metricsHelper.addGaugeMetric(
                 MetricsConstants.Quartz.Name.QUARTZ_JOB_RUN_TIME,
                 MetricsConstants.Quartz.Description.QUARTZ_JOB_RUN_TIME_DESCRIPTION,
                 context.getJobRunTime(),

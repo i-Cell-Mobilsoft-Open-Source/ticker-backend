@@ -3,7 +3,41 @@
 == Changes
 * `docker-base` upgrade *1.5.0 -> 1.7.0*
 ** including `builder-nexus-download` and setting the `NEXUS_REPOSITORY_TYPE=central` environment variable in release Dockerfiles
+* coffee upgrade *2.11.0 -> 2.13.0*
+* Quarkus platform upgrade *3.15.3 -> 3.20.6*
+* Metrics export migrated to OpenTelemetry Collector via OTLP protocol
+** Removed deprecated `io.opentelemetry:opentelemetry-exporter-jaeger` (removed from OpenTelemetry Java since 1.35.0)
+** Metrics are now exported via `quarkus-micrometer-registry-otlp` using the OTLP push protocol
 
 == Migration
 
-The changes are backward compatible and do not require migration.
+=== Metrics endpoint and configuration
+
+Jaeger agent configuration has been replaced with OpenTelemetry Collector configuration.
+
+[options="header",cols="1,1"]
+|===
+|Removed environment variable |Replacement
+|`TICKER_JAEGER_AGENT_HOST_PORT` |`QUARKUS_OTEL_EXPORTER_OTLP_ENDPOINT` (e.g. `http://otel-collector:4317`)
+|`TICKER_JAEGER_SERVICE_NAME` |Use `QUARKUS_OTEL_SERVICE_NAME`
+|===
+
+Additionally, set the OTLP metrics endpoint:
+
+[source,properties]
+----
+QUARKUS_MICROMETER_EXPORT_OTLP_URL=http://otel-collector:4318/v1/metrics
+----
+
+=== Metric name changes
+
+The `application_` prefix is no longer present in metric names (was Prometheus-specific).
+The `quartz_job_run_time` metric no longer has `_count` / `_sum` / `quantile` variants — it is now a plain Gauge value.
+
+[options="header",cols="1,1"]
+|===
+|Old metric name |New metric name
+|`application_quartz_job_prev_fire_time` |`quartz_job_prev_fire_time`
+|`application_quartz_job_next_fire_time` |`quartz_job_next_fire_time`
+|`application_quartz_job_run_time` |`quartz_job_run_time`
+|===
