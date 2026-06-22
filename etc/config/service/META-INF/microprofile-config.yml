@@ -81,4 +81,9 @@ quarkus:
       * __500__ - Internal Server Error <br/>
   swagger-ui:
     enable: false
-
+  otel:
+    service:
+      name: ${quarkus.application.name}
+    exporter:
+      otlp:
+        resource-attributes: "service.name=${quarkus.application.name}"
