@@ -13,17 +13,17 @@
     <name>${project.artifactId}</name>
 
     <properties>
-        <version.jakarta.activation>2.1.2</version.jakarta.activation>
-        <version.jakarta.annotation>2.1.1</version.jakarta.annotation>
+        <version.jakarta.activation>2.1.4</version.jakarta.activation>
+        <version.jakarta.annotation>3.0.0</version.jakarta.annotation>
         <version.jakarta.authentication>3.0.0</version.jakarta.authentication>
         <version.jakarta.authorization>2.1.0</version.jakarta.authorization>
         <version.jakarta.el>5.0.1</version.jakarta.el>
-        <version.jakarta.enterprise.cdi>4.0.1</version.jakarta.enterprise.cdi>
+        <version.jakarta.enterprise.cdi>4.1.0</version.jakarta.enterprise.cdi>
         <version.jakarta.inject>2.0.1</version.jakarta.inject>
         <version.jakarta.interceptor>2.1.0</version.jakarta.interceptor>
         <version.jakarta.json>2.1.2</version.jakarta.json>
         <version.jakarta.json.bind>3.0.0</version.jakarta.json.bind>
-        <version.jakarta.mail>2.0.1</version.jakarta.mail>
+        <version.jakarta.mail>2.1.4</version.jakarta.mail>
         <version.jakarta.persistence>3.1.0</version.jakarta.persistence>
         <version.jakarta.resource>2.1.0</version.jakarta.resource>
         <version.jakarta.servlet>6.0.0</version.jakarta.servlet>
@@ -31,7 +31,7 @@
         <version.jakarta.validation>3.0.2</version.jakarta.validation>
         <version.jakarta.websocket>2.1.0</version.jakarta.websocket>
         <version.jakarta.ws.rs>3.1.0</version.jakarta.ws.rs>
-        <version.jakarta.xml.bind>4.0.0</version.jakarta.xml.bind>
+        <version.jakarta.xml.bind>4.0.4</version.jakarta.xml.bind>
     </properties>
 
     <dependencyManagement>

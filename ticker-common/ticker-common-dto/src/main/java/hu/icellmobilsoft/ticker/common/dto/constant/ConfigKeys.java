@@ -19,7 +19,8 @@
  */
 package hu.icellmobilsoft.ticker.common.dto.constant;
 
-import hu.icellmobilsoft.coffee.module.configdoc.ConfigDoc;
+
+import hu.icellmobilsoft.coffee.module.docgen.config.ConfigDoc;
 
 /**
  * Application configuration keys
