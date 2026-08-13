@@ -3,14 +3,14 @@ ARG ICELL_JAVA_JRE_BASE_IMAGE
 ################################################################################
 # Default image customization
 ################################################################################
-FROM ${ICELL_JAVA_JRE_BASE_IMAGE:-icellmobilsoft/base-java21jre:1.7.0-SNAPSHOT} AS base
+FROM ${ICELL_JAVA_JRE_BASE_IMAGE:-icellmobilsoft/base-java21jre:1.8.0} AS base
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en'
 
 ################################################################################
 # Download .jar
 ################################################################################
-FROM icellmobilsoft/builder-nexus-download:1.7.0-SNAPSHOT AS download
+FROM icellmobilsoft/builder-nexus-download:1.8.0 AS download
 
 ARG POM_GROUP_ID
 ARG POM_ARTIFACT_ID

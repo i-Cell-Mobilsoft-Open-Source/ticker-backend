@@ -9,7 +9,7 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en'
 ################################################################################
 # Download .jar
 ################################################################################
-FROM icellmobilsoft/builder-nexus-download:1.7.0-SNAPSHOT as download
+FROM icellmobilsoft/builder-nexus-download:1.8.0 as download
 
 ARG POM_GROUP_ID
 ARG POM_ARTIFACT_ID
