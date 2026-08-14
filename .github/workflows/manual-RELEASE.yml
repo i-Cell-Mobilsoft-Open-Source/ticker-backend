@@ -16,7 +16,7 @@ jobs:
   mvn-release:
     runs-on: ubuntu-latest
     # run only on main
-    if: (contains('["rombow","czenczl","speter555","mate-biro","cserhatit","Adigolyo"]', github.actor))
+    if: (contains('["bucherarnold","petrenyi-mark","mate-biro","cserhatit","Balazs-Joo"]', github.actor))
 
     steps:
       - name: Release
